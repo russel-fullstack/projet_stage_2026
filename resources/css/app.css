@@ -9,7 +9,12 @@
     --font-inter: 'Inter', sans-serif;
     --color-primary: #00236F;
     --color-secondary: #059669;
+    --color-tertiary: #8F9197;
     --color-accent: #4B5563;
     --color-hero: #F8F9FB;
+    --color-background:#cad5e2;
+    --color-checkbox: oklch(50.8% 0.118 165.612);
+    --color-backcheck: #d0fae5;
+    --color-hover:#7052FF;
 }
 

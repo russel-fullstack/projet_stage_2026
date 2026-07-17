@@ -1,7 +1,7 @@
-<section class="max-w-7xl mx-auto px-6 py-25 grid grid-cols-1 lg:grid-cols-14 gap-16 items-center ">
-    
+<section class="max-w-[1600px] mx-auto px-6 py-25 grid grid-cols-1 lg:grid-cols-14 gap-16 items-center ">
+
     <div class="lg:col-span-7 space-y-10">
-        
+
         <div class="space-y-4">
             <h2 class="text-4xl font-extrabold text-primary leading-tight">
                 Notre Vision &<br>Engagement
@@ -12,7 +12,7 @@
         </div>
 
         <div class="space-y-8">
-            
+
             <div class="flex items-start space-x-5">
                 <div class="shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-primary">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -47,10 +47,10 @@
 
     <div class="lg:col-span-7 relative flex justify-center">
         <div class="relative w-full max-w-4xl aspect-4/3 rounded-3xl overflow-hidden shadow-2xl shadow-gray-300/60 group">
-            
-            <img 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" 
-                alt="Étudiants travaillant ensemble" 
+
+            <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+                alt="Étudiants travaillant ensemble"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
 

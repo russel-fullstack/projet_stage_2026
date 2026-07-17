@@ -44,7 +44,7 @@
     ]
 ])
 
-<section class="max-w-7xl mx-auto px-8 py-20 space-y-12">
+<section class="max-w-[1600px] mx-auto px-8 py-20 space-y-12">
     <div class="flex items-end justify-between mb-10">
         <div class="space-y-2">
             <h2 class="text-3xl font-bold text-[#002266]">Cours populaires</h2>

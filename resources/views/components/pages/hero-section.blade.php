@@ -1,4 +1,4 @@
-     <section class="max-w-7xl mx-auto mb-5 px-6 py-25 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+     <section class="max-w-[1600px] mx-auto mb-5 px-6 py-25 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
          <div class="space-y-8">
              <div>
                  <span
@@ -55,7 +55,7 @@
 
          <div class="flex justify-center lg:justify-end">
              <div
-                 class="w-125 h-125 bg-[#E3E8FC]  shadow-xl shadow-gray-200/50 flex items-center justify-center transition-transform hover:scale-[1.01] duration-300">
+                 class="w-150 h-125 bg-[#E3E8FC]  shadow-xl shadow-gray-200/50 flex items-center justify-center transition-transform hover:scale-[1.01] duration-300">
                  <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
                      alt="Jeune femme apprenant en ligne sur son ordinateur" class="w-full h-full object-cover rounded-3xl" />
              </div>
