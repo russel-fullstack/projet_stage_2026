@@ -24,7 +24,7 @@
     ]
 ])
 
-<section class="max-w-7xl mx-auto px-8 py-20 space-y-16">
+<section class="max-w-[1600px] mx-auto px-8 py-20 space-y-16">
     <div class="text-center space-y-4">
         <h2 class="text-4xl font-bold text-primary">Ce que disent nos étudiants</h2>
         <p class="text-accent text-base max-w-2xl mx-auto leading-relaxed">
@@ -35,7 +35,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @foreach($testimonials as $testimonial)
             <div class="bg-gray-50/50 rounded-3xl p-8 border border-gray-100 flex flex-col justify-between space-y-6 transition-all hover:bg-white hover:shadow-xl hover:shadow-gray-200/40">
-                
+
                 <div class="space-y-4">
                     <div class="flex items-center space-x-1 text-secondary">
                         @for ($i = 0; $i < $testimonial['rating']; $i++)
@@ -51,9 +51,9 @@
                 </div>
 
                 <div class="flex items-center space-x-4 pt-4 border-t border-gray-100/60">
-                    <img 
-                        src="{{ $testimonial['avatar'] }}" 
-                        alt="{{ $testimonial['name'] }}" 
+                    <img
+                        src="{{ $testimonial['avatar'] }}"
+                        alt="{{ $testimonial['name'] }}"
                         class="w-12 h-12 rounded-full object-cover border border-gray-100"
                     />
                     <div>
