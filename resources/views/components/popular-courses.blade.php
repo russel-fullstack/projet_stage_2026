@@ -61,22 +61,22 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($courses as $course)
             <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-                
+
                 <div class="relative h-48 w-full bg-[#E3E8FC]">
                     @if($course['badge'])
                         <span class="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold rounded-md tracking-wider {{ $course['badge_color'] ?? 'bg-[#002266] text-white' }}">
                             {{ $course['badge'] }}
                         </span>
                     @endif
-                    
-                    <img 
-                        src="{{ $course['image'] }}" 
-                        alt="{{ $course['title'] }}" 
+
+                    <img
+                        src="{{ $course['image'] }}"
+                        alt="{{ $course['title'] }}"
                         class="w-full h-full object-cover"
                     />
                 </div>
 
-                <div class="p-6 space-y-3 flex-grow">
+                <div class="p-6 space-y-3 grow">
                     <div class="flex items-center space-x-2">
                         <span class="px-2.5 py-1 text-[10px] font-extrabold rounded {{ $course['category_color'] }}">
                             {{ $course['category'] }}
@@ -90,7 +90,7 @@
                         {{ $course['title'] }}
                     </h3>
 
-                    <p class="text-gray-500 text-sm line-clamp-2 min-h-[2.5rem]">
+                    <p class="text-gray-500 text-sm line-clamp-2 min-h-10">
                         {{ $course['description'] }}
                     </p>
 
@@ -112,7 +112,7 @@
 
                 <div class="px-6 pb-6 pt-4 border-t border-gray-50 flex items-center justify-between">
                     <span class="text-2xl font-black text-[#002266]">{{ $course['price'] }}</span>
-                    
+
                     <button class="w-10 h-10 bg-[#002266] hover:bg-opacity-90 text-white rounded-lg flex items-center justify-center transition-colors shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

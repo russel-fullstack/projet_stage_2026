@@ -1,7 +1,21 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\SpecialtyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+
+Route::prefix('admin')->group(function() {
+
+    Route::resource('programs', ProgramController::class);
+
+    Route::resource('specialties', SpecialtyController::class);
+
+    });
+
+    Route::resource('courses', CourseController::class);
