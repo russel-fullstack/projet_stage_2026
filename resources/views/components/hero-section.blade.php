@@ -21,10 +21,11 @@
                      class="px-6 py-3.5 bg-primary text-white font-semibold rounded-lg shadow-lg shadow-blue-900/10 hover:bg-[#022a74ce] transition-all cursor-pointer">
                      Commencer l'aventure
                  </button>
-                 <button
+                 <a
+                    href="{{ route('courses.index') }}"
                      class="px-6 py-3.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                      Voir les catalogues
-                 </button>
+                </a>
              </div>
 
              <div class="mt-12 flex items-center gap-6">
