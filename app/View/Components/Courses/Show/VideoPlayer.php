@@ -21,6 +21,6 @@ class VideoPlayer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.courses.video-player');
+        return view('components.courses.show.video-player');
     }
 }
