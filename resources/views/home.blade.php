@@ -15,7 +15,7 @@
         <x-pages.popular-courses />
 
         <!-- Testimonials Section -->
-       <div class='bg-white w-full py-15'>
+        <div class='bg-white w-full py-15'>
             <x-pages.testimonials />
         </div>
 
@@ -24,4 +24,3 @@
     </main>
 
 </x-layouts.app-layout>
-

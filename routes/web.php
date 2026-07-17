@@ -10,8 +10,8 @@ Route::get('/', function () {
 });
 
 Route::get('/pages/course', function () {
-    return view('courses.course-show');
-});
+    return view('courses.courses-show');
+})->name('courses.test');
 
 
 Route::prefix('admin')->group(function() {
