@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class VideoPlayer extends Component
+class InstructorCard extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class VideoPlayer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.courses.video-player');
+        return view('components.courses.show.instructor-card');
     }
 }

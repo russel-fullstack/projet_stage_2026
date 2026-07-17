@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Lesson-header extends Component
+class AsideChapiters extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class Lesson-header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.courses.lesson-header');
+        return view('components.courses.show.aside-chapiters');
     }
 }

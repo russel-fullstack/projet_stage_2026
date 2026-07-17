@@ -6,20 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CourseTabs extends Component
+class Breadcrumb extends Component
 {
     /**
      * Create a new component instance.
      */
-
-
-    public function __construct(
-        public string $description,
-        public array $objectives,
-        public array $resources
-    )
+    public function __construct()
     {
-        
+        //
     }
 
     /**
@@ -27,6 +21,6 @@ class CourseTabs extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.courses.course-tabs');
+        return view('components.courses.show.breadcrumb');
     }
 }

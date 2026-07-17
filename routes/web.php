@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/pages/course', function () {
-    return view('courses.course-page');
+    return view('courses.course-show');
 });
 
 

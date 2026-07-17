@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AsideChapiters extends Component
+class Widget extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class AsideChapiters extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.courses.aside-chapiters');
+        return view('components.courses.show.widget');
     }
 }
