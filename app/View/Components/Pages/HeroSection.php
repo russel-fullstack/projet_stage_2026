@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Pages;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class HeroSection extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.hero-section');
+        return view('components.pages.hero-section');
     }
 }
