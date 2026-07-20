@@ -11,4 +11,8 @@ class UserDashController extends Controller
     {
         return view('dashboard.user-dashboard');
     }
+    public function chapiter()
+    {
+        return view('users.courses.index');
+    }
 }

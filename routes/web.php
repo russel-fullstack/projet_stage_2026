@@ -21,6 +21,7 @@ Route::get('/pages/course', function () {
 Route::prefix('user')->group(function () {
 
 Route::get('user-dashboard', [UserDashController::class, 'index'])->name('user-dashboard');
+Route::get('chapiter', [UserDashController::class, 'chapiter'])->name('chapiter');
 
 });
 
