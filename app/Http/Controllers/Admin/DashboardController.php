@@ -65,6 +65,6 @@ class DashboardController extends Controller
                 'is_online' => false,
             ]
         ];
-        return view('dashboard', compact('users'));
+        return view('dashboard.admin-dashboard', compact('users'));
     }
 }

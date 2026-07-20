@@ -5,7 +5,7 @@
         <!-- Colonne 1 : À propos -->
         <div class="space-y-3">
             <h3 class="text-white font-bold text-lg underline">À propos</h3>
-            <ul class="space-y-2 text-base text-hero">
+            <ul class="space-y-2 text-xs text-hero">
                 <li><a href="#" class="hover:text-white hover:underline">À propos de EduMaster</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Carrières</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Contactez-nous</a></li>
@@ -18,7 +18,7 @@
         <!-- Colonne 2 : Découvrir -->
         <div class="space-y-3">
             <h3 class="text-white font-bold text-lg underline">Découvrir EduMaster</h3>
-            <ul class="space-y-2 text-base text-hero">
+            <ul class="space-y-2 text-xs text-hero">
                 <li><a href="#" class="hover:text-white hover:underline">Téléchargez l'application</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Enseigner sur EduMaster</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Abonnements et tarifs</a></li>
@@ -30,7 +30,7 @@
         <!-- Colonne 3 : Entreprise -->
         <div class="space-y-3">
             <h3 class="text-white font-bold text-lg underline">EduMaster for Business</h3>
-            <ul class="space-y-2 text-base text-hero">
+            <ul class="space-y-2 text-xs text-hero">
                 <li><a href="#" class="hover:text-white hover:underline">EduMaster Business</a></li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
         <!-- Colonne 4 : Juridique -->
         <div class="space-y-3">
             <h3 class="text-white font-bold text-lg underline">Juridique et accessibilité</h3>
-            <ul class="space-y-2 text-base text-hero">
+            <ul class="space-y-2 text-xs text-hero">
                 <li><a href="#" class="hover:text-white hover:underline">Déclaration d'accessibilité</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Politique de confidentialité</a></li>
                 <li><a href="#" class="hover:text-white hover:underline">Plan du site</a></li>
