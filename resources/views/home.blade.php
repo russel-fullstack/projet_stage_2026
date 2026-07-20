@@ -4,7 +4,7 @@
         <x-pages.hero-section />
 
         <!-- Stats Section -->
-        <x-pages.stats-card />
+        <x-pages.stats-section />
 
         <!-- Vision Section -->
         <div class='bg-white w-full py-15'>
@@ -12,7 +12,7 @@
 
         </div>
         <!-- Featured Courses Section -->
-        <x-pages.popular-courses />
+        <x-pages.popular-courses :courses="$courses" />
 
         <!-- Testimonials Section -->
         <div class='bg-white w-full py-15'>

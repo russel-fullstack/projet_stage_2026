@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Pages;
+namespace App\View\Components\Users;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class StatsCard extends Component
+class HeaderCard extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class StatsCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.stats-section');
+        return view('components.users.header-card');
     }
 }

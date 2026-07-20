@@ -12,7 +12,9 @@
     --color-tertiary: #8F9197;
     --color-accent: #4B5563;
     --color-hero: #F8F9FB;
-    --color-background:#cad5e2;
+    --color-slate: #62748e;
+    --color-red: #fb2c36;
+    --color-background:#F3F4F6;
     --color-checkbox: oklch(50.8% 0.118 165.612);
     --color-backcheck: #d0fae5;
     --color-hover:#7052FF;

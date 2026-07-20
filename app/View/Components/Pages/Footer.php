@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class StatsCard extends Component
+class Footer extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class StatsCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.stats-section');
+        return view('components.pages.footer');
     }
 }
