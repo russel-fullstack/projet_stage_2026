@@ -29,7 +29,7 @@ Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
 });
 
 Route::prefix('admin')->group(function() {
-
+    Route::resource('course', CourseController::class);
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);

@@ -8,12 +8,12 @@
                 <p class="text-gray-500 text-sm mt-1">Surveillez, approuvez et gérez le catalogue de formation EduMaster.</p>
             </div>
 
-            <button class="flex items-center justify-center space-x-2 px-5 py-3 bg-[#002266] hover:bg-opacity-95 text-white text-xs font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap self-start sm:self-center">
+            <a class="flex items-center justify-center space-x-2 px-5 py-3 bg-[#002266] hover:bg-opacity-95 text-white text-xs font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap self-start sm:self-center" href="{{ route('course.create') }}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <span>Créer un cours</span>
-            </button>
+            </a>
         </div>
 
         <!-- BLOC DES 4 CARTES STATISTIQUES RÉDUITES -->

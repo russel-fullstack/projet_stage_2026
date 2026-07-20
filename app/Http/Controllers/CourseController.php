@@ -15,6 +15,11 @@ class CourseController extends Controller
         return view('courses.courses-index', compact('courses'));
     }
 
+    public function create()
+    {
+        return view('courses.courses-create');
+    }
+
     public function show(Course $course)
     {
         $course = Course::with('specialty')->findOrFail($course->id);
