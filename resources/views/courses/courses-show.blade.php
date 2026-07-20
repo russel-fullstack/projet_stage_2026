@@ -78,14 +78,7 @@
                         'status' => 'pending',
                         'type' => 'video',
                         'url' => '#',
-                    ],
-                    [
-                        'title' => 'Quiz : Concepts Chapitre 3',
-                        'status' => 'pending',
-                        'type' => 'quiz',
-                        'questions_count' => 5,
-                        'url' => '#',
-                    ],
+                    ]
                 ],
             ],
         ];

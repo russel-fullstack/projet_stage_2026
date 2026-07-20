@@ -76,12 +76,12 @@
                 </div>
 
                 <!-- Bouton Ajouter -->
-                <button class="flex items-center justify-center space-x-2 px-5 py-3 bg-[#002266] hover:bg-opacity-95 text-white text-xs font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap">
+                <a class="flex items-center justify-center space-x-2 px-5 py-3 bg-[#002266] hover:bg-opacity-95 text-white text-xs font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap" href="{{ route('users.create') }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v10.5m-10.5-5.25h10.5m-14.25 0a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z"></path>
                     </svg>
                     <span>Ajouter un utilisateur</span>
-                </button>
+                </a>
             </div>
 
             <!-- TABLE DES UTILISATEURS -->
