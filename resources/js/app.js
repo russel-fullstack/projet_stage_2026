@@ -1,4 +1,4 @@
-
+import Chart from 'chart.js/auto'
 // Micro-interactions and effects
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('mousedown', () => {

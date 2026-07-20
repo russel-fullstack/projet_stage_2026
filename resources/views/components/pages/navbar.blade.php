@@ -3,13 +3,13 @@
       <a href="/" class="text-2xl font-bold text-primary">EduMaster</a>
 
       <div class="relative py-2 flex flex-row items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-icon lucide-list"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>
-        <a href="{{ route('chapiters.index') }}" class="text-lg font-semibold text-primary">Formations</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"><path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z"/><path d="M7 21h10"/><rect width="20" height="14" x="2" y="3" rx="2"/></svg>
+          <path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>
+        <a href="{{ route('chapiters.index') }}" class="text-lg font-semibold text-primary">Catalogue</a>
         {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
       </div>
 
     <div class="relative py-2 flex flex-row items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"><path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z"/><path d="M7 21h10"/><rect width="20" height="14" x="2" y="3" rx="2"/></svg>
         <a href="#" class="text-lg font-semibold text-primary">Tutoriels</a>
         {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
       </div>

@@ -90,7 +90,7 @@
 
     <!-- Barre inférieure (Logo, Copyright, Langue) -->
     <div class="border-t border-slate-800 bg-secondary">
-        <div class="max-w-[1600px] mx-auto px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div class="max-w-[1600px] mx-auto px-8 py-3 flex flex-col lg:flex-row items-center justify-between gap-4">
 
             <!-- Gauche : Logo & Copyright -->
             <div class="flex items-center space-x-4">
@@ -104,7 +104,7 @@
 
             <!-- Droite : Sélecteur de langue -->
             <div>
-                <button class="flex items-center space-x-2 px-4 py-1.5 border-2 border-hero rounded-lg text-base font-semibold text-white hover:bg-slate-800/50">
+                <button class="flex items-center space-x-2 px-4 py-1.5 border-2 border-hero rounded-lg text-xs font-semibold text-white hover:bg-slate-800/50">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 18c-4.97 0-9-4.03-9-9s4.03-9 9-9m0 18c4.97 0 9-4.03 9-9s-4.03-9-9-9M3.747 8.716A9.034 9.034 0 0112 5c2.955 0 5.614 1.417 7.284 3.604m-16.568 6.51A9.033 9.033 0 0012 19c2.955 0 5.614-1.417 7.284-3.604M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
