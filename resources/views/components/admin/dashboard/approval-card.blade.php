@@ -1,4 +1,3 @@
-@props(['title', 'author', 'time', 'bgImage' => 'bg-indigo-100'])
 
 <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-3">
     <div class="flex items-center space-x-3">

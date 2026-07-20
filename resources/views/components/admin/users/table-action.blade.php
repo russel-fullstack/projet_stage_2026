@@ -1,4 +1,3 @@
-@props(['type', 'status' => 'active'])
 
 @if($type === 'edit')
     <button class="p-2 text-gray-400 hover:text-[#002266] hover:bg-gray-50 rounded-xl transition-all inline-flex items-center" title="Modifier">

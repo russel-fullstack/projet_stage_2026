@@ -27,7 +27,7 @@
         </div>
 
         <!-- GRILLE DES 4 MINI-METRICS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Total Apprenants -->
             <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm relative overflow-hidden">
                 <div class="flex items-center justify-between">
@@ -67,20 +67,6 @@
                 <div class="mt-4">
                     <p class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Taux de Complétion</p>
                     <h4 class="text-2xl font-black text-primary mt-0.5">64.2%</h4>
-                </div>
-            </div>
-
-            <!-- Revenu Mensuel -->
-            <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm relative overflow-hidden">
-                <div class="flex items-center justify-between">
-                    <div class="p-2.5 bg-rose-50 text-rose-500 rounded-xl">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5h16.5M5.25 7.5h13.5m-12 9h10.5m-12.75 3h15m-15-3v-12m15 12v-12"></path></svg>
-                    </div>
-                    <span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-black rounded-lg">+24%</span>
-                </div>
-                <div class="mt-4">
-                    <p class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Revenu Mensuel</p>
-                    <h4 class="text-2xl font-black text-primary mt-0.5">142.5k €</h4>
                 </div>
             </div>
         </div>
@@ -236,7 +222,7 @@
                         <!-- Cours 1 -->
                         <tr>
                             <td class="py-3 flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-primary text-white text-[10px] font-black rounded-lg flex items-center justify-center flex-shrink-0">AI</div>
+                                <div class="w-8 h-8 bg-primary text-white text-[10px] font-black rounded-lg flex items-center justify-center shrink-0">AI</div>
                                 <div>
                                     <p class="font-black text-gray-900 leading-tight">Masterclass Intelligence Artificielle</p>
                                     <p class="text-[10px] text-tertiary font-medium">Jean Dupont</p>
@@ -254,7 +240,7 @@
                         <!-- Cours 2 -->
                         <tr>
                             <td class="py-3 flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-emerald-100 text-emerald-600 text-[10px] font-black rounded-lg flex items-center justify-center flex-shrink-0">UX</div>
+                                <div class="w-8 h-8 bg-emerald-100 text-emerald-600 text-[10px] font-black rounded-lg flex items-center justify-center shrink-0">UX</div>
                                 <div>
                                     <p class="font-black text-gray-900 leading-tight">Design Thinking Fondamentaux</p>
                                     <p class="text-[10px] text-tertiary font-medium">Sarah Lemoine</p>
@@ -272,7 +258,7 @@
                         <!-- Cours 3 -->
                         <tr>
                             <td class="py-3 flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-indigo-900 text-white text-[10px] font-black rounded-lg flex items-center justify-center flex-shrink-0">PY</div>
+                                <div class="w-8 h-8 bg-indigo-900 text-white text-[10px] font-black rounded-lg flex items-center justify-center shrink-0">PY</div>
                                 <div>
                                     <p class="font-black text-gray-900 leading-tight">Python pour la Data Science</p>
                                     <p class="text-[10px] text-tertiary font-medium">Marc Weber</p>

@@ -11,9 +11,28 @@ class TableAction extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $type = 'edit',
+        public string $status = 'active'
+    ) {}
+
+    /**
+     * Vérifie si le statut est suspendu / banni.
+     */
+    public function isBanned(): bool
     {
-        //
+        return $this->status === 'banned';
+    }
+
+    /**
+     * Retourne le titre contextuel du bouton suspendre/réactiver.
+     */
+    public function getTitle(): string
+    {
+        if ($this->type === 'edit') return 'Modifier';
+        if ($this->type === 'delete') return 'Supprimer';
+
+        return $this->isBanned() ? 'Réactiver' : 'Suspendre';
     }
 
     /**

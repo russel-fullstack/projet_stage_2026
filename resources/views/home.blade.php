@@ -4,7 +4,7 @@
         <x-pages.hero-section />
 
         <!-- Stats Section -->
-        <x-pages.stats-card />
+        <x-pages.stats-section />
 
         <!-- Vision Section -->
         <div class='bg-white w-full py-15'>

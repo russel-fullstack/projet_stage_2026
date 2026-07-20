@@ -11,11 +11,17 @@ class StatCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $title = '',
+        public string|int $value = 0,
+        public ?string $trend = null,
+        public string $trendColor = 'text-emerald-500',
+        public string $iconColor = 'bg-indigo-50 text-indigo-600'
+    ) {}
+    public function hasTrend(): bool
     {
-        //
+        return !empty($this->trend);
     }
-
     /**
      * Get the view / contents that represent the component.
      */

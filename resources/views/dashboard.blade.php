@@ -3,8 +3,8 @@
     <x-slot:title>Tableau de bord - EduMaster</x-slot>
 
     <!-- SECTION DES STATISTIQUES -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <x-admin.dashboard.stat-card title="Utilisateurs Totaux" value="12,845" trend="+12% ce mois">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <x-admin.dashboard.stat-card title="Utilisateurs Totaux" value="12,845" trend="+12% ce mois" >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path></svg>
         </x-admin.dashboard.stat-card>
 
@@ -12,11 +12,7 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.174L10.721 6.8a2.25 2.25 0 012.558 0l6.46 3.373m-16.456 0a3.25 3.25 0 004.57 2.935l4.8-1.556a1 1 0 01.628 0l4.8 1.556a3.25 3.25 0 004.57-2.935m-16.456 0a4.5 4.5 0 010 4.786l1.724 2.87c.42.7.195 1.62-.505 2.04-1.24.743-2.61.353-3.26-.883L2.24 14.96a4.5 4.5 0 010-4.786z"></path></svg>
         </x-admin.dashboard.stat-card>
 
-        <x-admin.dashboard.stat-card title="Cours Publiés" value="342" trend="24 nouveaux" iconColor="bg-emerald-50 text-emerald-600">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.174L10.721 6.8a2.25 2.25 0 012.558 0l6.46 3.373m-16.456 0a3.25 3.25 0 004.57 2.935l4.8-1.556a1 1 0 01.628 0l4.8 1.556a3.25 3.25 0 004.57-2.935m-16.456 0a4.5 4.5 0 010 4.786l1.724 2.87c.42.7.195 1.62-.505 2.04-1.24.743-2.61.353-3.26-.883L2.24 14.96a4.5 4.5 0 010-4.786z"></path></svg>
-        </x-admin.dashboard.stat-card>
-
-        <x-admin.dashboard.stat-card title="Cours Publiés" value="342" trend="24 nouveaux" iconColor="bg-emerald-50 text-emerald-600">
+        <x-admin.dashboard.stat-card title="En Attente" value="22" trend="22 nouveaux" iconColor="bg-red-50 text-red-600" trend-color="text-red-500">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.174L10.721 6.8a2.25 2.25 0 012.558 0l6.46 3.373m-16.456 0a3.25 3.25 0 004.57 2.935l4.8-1.556a1 1 0 01.628 0l4.8 1.556a3.25 3.25 0 004.57-2.935m-16.456 0a4.5 4.5 0 010 4.786l1.724 2.87c.42.7.195 1.62-.505 2.04-1.24.743-2.61.353-3.26-.883L2.24 14.96a4.5 4.5 0 010-4.786z"></path></svg>
         </x-admin.dashboard.stat-card>
 

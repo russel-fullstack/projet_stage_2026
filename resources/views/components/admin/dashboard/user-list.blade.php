@@ -1,5 +1,3 @@
-@props(['users'])
-
 <div class="overflow-x-auto">
     <table class="w-full text-left border-collapse">
         <thead>
@@ -18,35 +16,36 @@
                 <td class="py-4 pl-2 flex items-center space-x-3 max-w-[300px]">
                     {{-- Avatar avec initiales --}}
                     <div class="w-10 h-10 {{ $user['avatar_bg'] ?? 'bg-indigo-50 text-indigo-600' }} rounded-xl flex-shrink-0 flex items-center justify-center text-xs font-black relative shadow-sm">
-                        {{ $user['initials'] }}
+                        {{ $user['initials'] ?? 'U' }}
                         @if($user['is_online'] ?? false)
                             <span class="w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full absolute -top-0.5 -right-0.5 shadow-sm"></span>
                         @endif
                     </div>
                     <div class="truncate">
-                        <p class="font-black text-gray-900 truncate">{{ $user['name'] }}</p>
-                        <p class="text-[10px] text-tertiary font-medium mt-0.5 truncate">{{ $user['email'] }}</p>
+                        <p class="font-black text-gray-900 truncate">{{ $user['name'] ?? 'Inconnu' }}</p>
+                        <p class="text-[10px] text-tertiary font-medium mt-0.5 truncate">{{ $user['email'] ?? '' }}</p>
                     </div>
                 </td>
 
                 <!-- Rôle / Badge -->
                 <td class="py-4">
-                    @switch($user['role'])
+                    @switch($user['role'] ?? 'student')
                         @case('super_admin')
-                           <x-admin.dashboard.badge color="red">Admin</x-admin.dashboard.badge>
+                            <x-admin.dashboard.badge color="red">Admin</x-admin.dashboard.badge>
                             @break
 
                         @case('instructor')
                             <x-admin.dashboard.badge color="blue">Formateur</x-admin.dashboard.badge>
                             @break
+
                         @default
-                         <x-admin.dashboard.badge color="gray" >Étudiant</x-admin.dashboard.badge>
+                            <x-admin.dashboard.badge color="gray">Étudiant</x-admin.dashboard.badge>
                     @endswitch
                 </td>
 
                 <!-- Date d'inscription -->
                 <td class="py-4 text-tertiary font-medium leading-tight">
-                    {{ $user['joined_at_formatted'] }}<br>
+                    {{ $user['joined_at_formatted'] ?? '-' }}<br>
                     <span class="text-[10px] text-gray-300">{{ $user['joined_time'] ?? '' }}</span>
                 </td>
 

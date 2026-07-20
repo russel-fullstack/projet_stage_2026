@@ -21,6 +21,6 @@ class StatsCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.stats-card');
+        return view('components.pages.stats-section');
     }
 }
