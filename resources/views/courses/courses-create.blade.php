@@ -1,5 +1,5 @@
 <div>
-    <form action="{{ route('courses.store') }}" method="post">
+    <form action="{{ route('chapiters.store') }}" method="post">
         nom du cours
         <input type="text">
         description
