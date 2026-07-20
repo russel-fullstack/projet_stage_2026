@@ -22,7 +22,7 @@
                      Commencer l'aventure
                  </button>
                  <a
-                    href="{{ route('courses.index') }}"
+                    href="{{ route('home.courses.index') }}"
                      class="px-6 py-3.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                      Voir les catalogues
                 </a>
@@ -31,11 +31,11 @@
              <div class="mt-12 flex items-center gap-6">
                  <div class="flex -space-x-3">
                      <div class="w-10 h-10 rounded-full border-2 border-white bg-cover bg-center"
-                         data-alt="Close-up portrait of a professional smiling young woman with a focused expression, bright studio lighting, minimalist corporate style, wearing a navy blue blazer." ">
+                         data-alt="Close-up portrait of a professional smiling young woman with a focused expression, bright studio lighting, minimalist corporate style, wearing a navy blue blazer.">
                           <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" alt="Étudiant 1">
                      </div>
                      <div class="w-10 h-10 rounded-full border-2 border-white bg-cover bg-center"
-                         data-alt="Medium shot of a diverse young man in a modern office setting, soft natural window light, professional and encouraging atmosphere, wearing a smart casual grey shirt."
+                         data-alt="Medium shot of a diverse young man in a modern office setting, soft natural window light, professional and encouraging atmosphere, wearing a smart casual grey shirt.
                        ">
                          <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
                              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop"
@@ -50,8 +50,7 @@
                  <p class="text-label-sm font-label-sm text-on-surface-variant">Rejoint par <span
                          class="text-primary font-bold">100k+ étudiants</span> passionnés</p>
              </div>
-         </div>
-         </div>
+             </div>
 
          <div class="flex justify-center lg:justify-end">
              <div

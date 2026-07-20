@@ -4,7 +4,7 @@
 
       <div class="relative py-2 flex flex-row items-center gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-icon lucide-list"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>
-        <a href="{{ route('courses.index') }}" class="text-lg font-semibold text-primary">Formations</a>
+        <a href="{{ route('home.courses.index') }}" class="text-lg font-semibold text-primary">Formations</a>
         {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
       </div>
 
@@ -35,10 +35,10 @@
         </svg>
       </button>
 
-      <button class="text-gray-600 hover:text-primary transition-colors focus:outline-none">
+      <a class="text-gray-600 hover:text-primary transition-colors focus:outline-none" href="{{ route("dashboard") }}">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-      </button>
+      </a>
     </div>
   </nav>

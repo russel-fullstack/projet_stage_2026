@@ -1,27 +1,19 @@
 <?php
 
-namespace App\View\Components\Pages;
+namespace App\View\Components\Admin\Dashboard;
 
-use App\Models\Course;
-use App\Models\Specialty;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PopularCourses extends Component
+class UserList extends Component
 {
     /**
      * Create a new component instance.
      */
-
-    public $courses;
-
     public function __construct()
     {
-        $this->courses = Course::with('specialty')
-            ->latest()
-            ->paginate(3);
-
+        //
     }
 
     /**
@@ -29,6 +21,6 @@ class PopularCourses extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.popular-courses');
+        return view('components.admin.dashboard.user-list');
     }
 }

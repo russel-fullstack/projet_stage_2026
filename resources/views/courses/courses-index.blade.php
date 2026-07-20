@@ -1,6 +1,5 @@
 <x-layouts.app-layout>
     <div class="min-h-screen bg-[#F8FAFC] pb-12">
-
         <!-- En-tête de page -->
         <div class="max-w-[1600px] mx-auto px-3 py-10 sm:px-6 lg:px-8 pt-12">
             <h1 class="text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
@@ -53,23 +52,10 @@
                 </div>
 
                 <!-- Widget Suggestion -->
-        </div>
-        </main>
+            </main>
     </div>
 
     <!-- Widget Progression Flottant (Affiché uniquement sur Mobile en bas à gauche de l'écran) -->
-    {{-- <div class="fixed bottom-6 left-6 z-50 w-72 lg:hidden">
-        <x-global-progress active-courses-count="12" global-progress-percent="45" />
-    </div> --}}
     </div>
-
-
-
-
-
-
-
-
-
 
 </x-layouts.app-layout>

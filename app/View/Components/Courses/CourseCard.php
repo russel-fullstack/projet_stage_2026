@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Courses;
 
+use App\Models\Course;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -11,9 +12,12 @@ class CourseCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $course;
+    public function __construct(
+        Course $course
+    )
     {
-        //
+       $this->course = $course;
     }
 
     /**

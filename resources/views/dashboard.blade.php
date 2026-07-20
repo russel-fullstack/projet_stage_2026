@@ -28,7 +28,7 @@
 
         <!-- TABLE DES UTILISATEURS (8 Colonnes) -->
         <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm lg:col-span-8 space-y-6">
-            <x-dashboard.user-list :users="$users"/>
+            <x-admin.dashboard.user-list :users="$users"/>
         </div>
 
         <!-- PANNEAU DE DROITE (4 Colonnes) -->

@@ -1,20 +1,12 @@
-@props([
-    'course'
-])
 
 <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
 
     <!-- Zone Image / Badge -->
     <div class="relative h-48 w-full bg-[#E3E8FC]">
-        @if($course['badge'])
-            <span class="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold rounded-md tracking-wider {{ $course['badge_color'] ?? 'bg-[#002266] text-white' }}">
-                {{ $course['badge'] }}
-            </span>
-        @endif
 
         <img
-            src="{{ $course['image'] }}"
-            alt="{{ $course['title'] }}"
+            src="{{ $course->image_cover }}"
+            alt="image"
             class="w-full h-full object-cover"
         />
     </div>
@@ -23,22 +15,23 @@
     <div class="p-6 space-y-3 grow">
         <!-- Catégorie & Niveau -->
         <div class="flex items-center space-x-2">
-            <span class="px-2.5 py-1 text-[10px] font-extrabold rounded {{ $course['category_color'] }}">
-                {{ $course['category'] }}
-            </span>
-            <span class="px-2.5 py-1 text-[10px] font-extrabold rounded {{ $course['level_color'] }}">
-                {{ $course['level'] }}
-            </span>
+           <x-pages.badge color="purple">
+                {{ data_get($course, 'specialty.name') }}
+           </x-pages.badge>
+          <x-pages.badge color="green">
+               Débutant
+          </x-pages.badge>
+
         </div>
 
         <!-- Titre -->
         <h3 class="text-xl font-bold text-[#002266] leading-snug">
-            {{ $course['title'] }}
+            {{ $course->title }}
         </h3>
 
         <!-- Description -->
         <p class="text-gray-500 text-sm line-clamp-2 min-h-10">
-            {{ $course['description'] }}
+            {{ $course->description }}
         </p>
 
         <!-- Durée & Étudiants -->
