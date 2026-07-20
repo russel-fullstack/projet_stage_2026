@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::resource('users', UserController::class);
     Route::get('admin-chapiters', [AdminCourseController::class, 'index'])->name('admin-chapiters.index');
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });

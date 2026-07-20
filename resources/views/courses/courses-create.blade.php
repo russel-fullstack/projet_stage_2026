@@ -1,5 +1,5 @@
-<x-layouts.app-layout>
-    <div class="min-h-screen bg-[#F8FAFC] py-10 px-4 sm:px-6">
+<x-layouts.admin.admin-layout>
+    <div class="min-h-screen py-10 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm">
 
             <form action="" method="POST" enctype="multipart/form-data" class="space-y-8">
@@ -69,11 +69,11 @@
                 <x-courses.create.file-uploader />
 
                 {{-- Section : Description détaillée avec éditeur WYSIWYG --}}
-                <x-courses.create.rich-text-editor />
+               <x-courses.create.rich-text-editor/>
 
                 {{-- Actions de bas de page --}}
                 <div class="pt-4 flex items-center justify-end space-x-6">
-                    <a href="{{ route('user-dashboard') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
+                    <a href="{{ route('admin-chapiters.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
                         Annuler
                     </a>
 
@@ -92,4 +92,4 @@
 
         </div>
     </div>
-</x-layouts.app-layout>
+</x-layouts.admin.admin-layout>
