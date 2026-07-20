@@ -15,13 +15,14 @@ Route::get('/', [HomeController::class, 'index'])->name('accueil');
 
 Route::get('/pages/course', function () {
     return view('courses.courses-show');
-})->name('courses.test');
+})->name('chapiters.test');
 
 
 Route::prefix('user')->group(function () {
 
 Route::get('user-dashboard', [UserDashController::class, 'index'])->name('user-dashboard');
 Route::get('chapiter', [UserDashController::class, 'chapiter'])->name('chapiter');
+Route::get('certifications', [UserDashController::class, 'certified'])->name('certified');
 
 });
 
@@ -31,8 +32,8 @@ Route::prefix('admin')->group(function() {
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);
     Route::get('users', [UserController::class, 'index'])->name('users.index');
-    Route::get('admin-courses', [AdminCourseController::class, 'index'])->name('admin-courses.index');
+    Route::get('admin-chapiters', [AdminCourseController::class, 'index'])->name('admin-chapiters.index');
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });
 
-    Route::resource('courses', CourseController::class);
+    Route::resource('chapiters', CourseController::class);

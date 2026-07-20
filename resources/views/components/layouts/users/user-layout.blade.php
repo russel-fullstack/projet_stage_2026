@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'EduMaster Admin' }}</title>
+    <title>{{ $title ?? 'EduMaster - Étudiant' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-background flex flex-col font-sans antialiased text-primary">
@@ -17,7 +17,7 @@
     <x-users.sidebar />
 
     <!-- Zone de Contenu Dynamique -->
-    <main class="flex-1 overflow-y-auto p-4 space-y-8">
+    <main class="flex-1 overflow-y-auto p-2 space-y-8">
         {{ $slot }}
     </main>
 
