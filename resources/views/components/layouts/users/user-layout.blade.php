@@ -17,7 +17,7 @@
     <x-users.sidebar />
 
     <!-- Zone de Contenu Dynamique -->
-    <main class="flex-1 overflow-y-auto p-8 space-y-8">
+    <main class="flex-1 overflow-y-auto p-4 space-y-8">
         {{ $slot }}
     </main>
 

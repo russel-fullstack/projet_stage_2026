@@ -11,10 +11,13 @@ class HeaderCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $title = '',
+        public string $description = '',
+        public string $category = '',
+        public int|string $chaptersCount = 0,
+        public string $actionUrl = '#'
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
