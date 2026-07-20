@@ -22,7 +22,7 @@
                      Commencer l'aventure
                  </button>
                  <a
-                    href="{{ route('home.courses.index') }}"
+                    href="{{ route('courses.index') }}"
                      class="px-6 py-3.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                      Voir les catalogues
                 </a>

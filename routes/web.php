@@ -25,9 +25,9 @@ Route::prefix('admin')->group(function() {
 
     Route::resource('users', UserController::class);
 
-    Route::resource('courses', AdminCourseController::class);
+    Route::resource('admin-courses', AdminCourseController::class);
 
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });
 
-    Route::get('courses', [CourseController::class, 'index'])->name('home.courses.index');
+    Route::resource('courses', CourseController::class);
