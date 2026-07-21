@@ -1,7 +1,7 @@
 
 <div  class=" rounded-2xl shadow-xl overflow-hidden ">
     <video
-        class="plyr-video w-full rounded-xl"
+        class="plyr--video w-full rounded-xl"
         playsinline
         controls
         @if($poster)
