@@ -1,8 +1,3 @@
-@props([
-    'name' => 'Jean-Marc Dupont',
-    'role' => 'Senior Full-Stack Dev',
-    'avatarUrl' => null
-])
 
 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-4">
     <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 self-start">

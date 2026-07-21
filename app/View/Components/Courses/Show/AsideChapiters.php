@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Courses;
+namespace App\View\Components\Courses\Show;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,10 +11,12 @@ class AsideChapiters extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public int $percentComplete = 75,
+        public int $completedLessons = 18,
+        public int $totalLessons = 24,
+        public array $chapters = []
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

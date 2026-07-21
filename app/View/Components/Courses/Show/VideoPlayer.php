@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Courses;
+namespace App\View\Components\Courses\Show;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,10 +11,11 @@ class VideoPlayer extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $poster='https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1600&auto=format&fit=crop',
+        public string $src='https://cdn.coverr.co/videos/coverr-developer-coding-in-vs-code-4601/1080p.mp4'
+    )
+    {}
 
     /**
      * Get the view / contents that represent the component.

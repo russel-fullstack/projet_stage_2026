@@ -19,7 +19,7 @@
                 <!-- Barre de tri par catégories -->
                 <div class="flex items-center gap-2 overflow-x-auto pb-3 scrollbar-none">
                     <button
-                        class="px-5 py-2.5 bg-[#0A1D67] text-white text-xs font-extrabold rounded-full whitespace-nowrap">
+                        class="px-5 py-2.5 bg-primary text-white text-xs font-extrabold rounded-full whitespace-nowrap">
                         Tous les cours
                     </button>
                     <button

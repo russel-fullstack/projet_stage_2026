@@ -1,10 +1,3 @@
-@props([
-    'percentComplete' => 75,
-    'completedLessons' => 18,
-    'totalLessons' => 24,
-    'chapters' => []
-])
-
 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col divide-y divide-slate-100">
 
     <!-- 1. En-tête : Progression du cours -->

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Courses;
+namespace App\View\Components\Courses\Show;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,7 +11,12 @@ class InstructorCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+
+    public function __construct(
+        public string $name="",
+        public string $role= 'user',
+        public ?string $avatarUrl=null
+    )
     {
         //
     }

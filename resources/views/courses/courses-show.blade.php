@@ -94,13 +94,15 @@
         <!-- Barre de navigation optionnelle ou Header de ton LMS ici -->
         <main class="max-w-[1600px] mx-auto p-4 md:p-6 lg:p-8">
             <!-- Grille principale de la page -->
-            <h1 class="py-4 text-4xl text-primary font-extrabold underline">Cours: Masterclass en React Native</h1>
+
+            <h1 class="py-4 text-4xl text-primary font-extrabold underline">Cours: {{ $course->title }}</h1>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                 <!-- COLONNE GAUCHE : Lecteur, Titres, Onglets (Prend 8 colonnes sur 12) -->
                 <div class="lg:col-span-8 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <VideoPlayer /> -->
-                    <x-courses.show.video-player />
+                    <x-courses.show.video-player
+                        src="{{ asset('storage/figma.mp4') }}"/>
                     <!-- TODO: Composant <LessonHeader /> -->
                     <x-courses.show.lesson-header />
 
@@ -113,14 +115,20 @@
                 <div class="lg:col-span-4 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <CourseProgressBar /> & <SidebarChapterList /> -->
 
-                    <x-courses.show.aside-chapiters :chapters="$chapters" />
+                    <x-courses.show.aside-chapiters
+                        :percent-complete="80"
+                        :completed-lessons="20"
+                        :total-lessons="25"
+                        :chapters="$chapters" />
 
 
 
                     <!-- Section Widgets (Instructeur et Discord en grille 1x2 ou côte à côte) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                         <!-- TODO: Composant <InstructorCard /> -->
-                    <x-courses.show.instructor-card />
+                    <x-courses.show.instructor-card
+                        name="Paul synclair"
+                        role="Admin"/>
 
                         <!-- TODO: Composant <SupportWidget /> -->
                   <x-courses.show.widget />
