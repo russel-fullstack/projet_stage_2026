@@ -1,11 +1,37 @@
 import { ClassicEditor } from 'ckeditor5';
 import { Chart } from 'chart.js/auto';
-import { handleTypeChange } from './modules/lesson';
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
 
+window.Plyr = Plyr;
 
 document.addEventListener('DOMContentLoaded', () => {
-    handleTypeChange();
-});
+
+    Plyr.setup('.plyr-video', {
+
+        controls: [
+            'play-large',
+            'play',
+            'progress',
+            'current-time',
+            'mute',
+            'volume',
+            'settings',
+            'fullscreen'
+        ],
+
+        settings: [
+            'speed'
+        ],
+
+        speed: {
+            selected: 1,
+            options: [0.5, 0.75, 1, 1.25, 1.5, 2]
+        }
+
+    });
+
+})
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('mousedown', () => {
         button.classList.add('scale-95');
@@ -36,7 +62,7 @@ document.querySelectorAll('section').forEach(section => {
     section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
     observer.observe(section);
 });
-function togglePasswordVisibility() {
+/**function togglePasswordVisibility() {
     const field = document.getElementById('password_input');
     field.type = field.type === 'password' ? 'text' : 'password';
 }
@@ -75,4 +101,4 @@ ClassicEditor
         ]
     })
     .catch(error => console.error(error));
-
+**/

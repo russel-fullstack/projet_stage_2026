@@ -101,7 +101,8 @@
                 <!-- COLONNE GAUCHE : Lecteur, Titres, Onglets (Prend 8 colonnes sur 12) -->
                 <div class="lg:col-span-8 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <VideoPlayer /> -->
-                    <x-courses.show.video-player />
+                    <x-courses.show.video-player
+                        src="{{ asset('storage/figma.mp4') }}"/>
                     <!-- TODO: Composant <LessonHeader /> -->
                     <x-courses.show.lesson-header />
 
