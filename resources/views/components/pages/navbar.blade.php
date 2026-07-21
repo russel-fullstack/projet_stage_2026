@@ -8,11 +8,6 @@
         <a href="{{ route('courses.index') }}" class="text-lg font-semibold text-primary">Catalogue</a>
         {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
       </div>
-
-    <div class="relative py-2 flex flex-row items-center gap-1">
-        <a href="#" class="text-lg font-semibold text-primary">Tutoriels</a>
-        {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
-      </div>
     </div>
 
     <div class="flex items-center space-x-6">
@@ -29,16 +24,37 @@
         />
       </div>
 
-      <button class="text-gray-600 hover:text-primary transition-colors focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-        </svg>
-      </button>
+        @guest
 
-      <a class="text-gray-600 hover:text-primary transition-colors focus:outline-none" href="{{ route("dashboard") }}">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </a>
+            <a class="px-4 py-2 text-xs font-bold text-accent hover:text-[#110B29] hover:bg-slate-100/80 rounded-xl border border-slate-200/80 transition-all duration-200"
+               href="{{ route('register') }}">
+                S'inscrire
+            </a>
+
+            <a class="px-4 py-2 text-xs font-extrabold text-white bg-primary hover:bg-[#1b123d] active:scale-95 rounded-xl shadow-sm transition-all duration-200"
+               href="{{ route('login') }}">
+                Se connecter
+            </a>
+
+        @endguest
+
+        @auth
+
+            <a class="inline-flex items-center space-x-3 p-1.5 pr-3 rounded-2xl hover:bg-slate-100/80 transition-all duration-200 focus:outline-none group"
+               href="{{ Auth()->user()->role === 'user' ? route('user-dashboard') : route('dashboard') }}">
+                <!-- Avatar avec initiales -->
+                <div class="w-10 h-10 rounded-full bg-primary text-white font-black text-xs flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 2)) }}
+                </div>
+
+                <!-- Nom / Rôle -->
+                <div class="text-left hidden sm:block">
+                    <p class="text-xs font-extrabold text-[#110B29] leading-none">
+                        {{ Auth::user()->name ?? 'Admin' }}
+                    </p>
+                    <p class="text-[10px] font-semibold text-slate-400 mt-0.5">Administrateur</p>
+                </div>
+            </a>
+        @endauth
     </div>
   </nav>

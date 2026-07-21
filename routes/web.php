@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\RapportController;
 use App\Http\Controllers\Admin\Users\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProgramController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\Users\UserDashController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
-
+Route::get('register', [RegisterController::class, 'index'])->name('register');
 
 Route::prefix('user')->group(function () {
 Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
@@ -36,6 +37,5 @@ Route::prefix('admin')->group(function() {
     Route::resource('users', UserController::class);
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });
-
 
     Route::resource('courses', CourseController::class);
