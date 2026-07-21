@@ -18,38 +18,33 @@ use App\Http\Controllers\Users\UserDashController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('accueil');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('user')->group(function () {
+    Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
+    Route::get('user-dashboard', [UserDashController::class, 'index'])->name('user-dashboard');
+    Route::get('chapiter', [UserDashController::class, 'chapiter'])->name('chapiter');
+    Route::get('certifications', [UserDashController::class, 'certified'])->name('certified');
+    Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
 });
 
-
-Route::prefix('user')->group(function () {
-Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
-Route::get('user-dashboard', [UserDashController::class, 'index'])->name('user-dashboard');
-Route::get('chapiter', [UserDashController::class, 'chapiter'])->name('chapiter');
-Route::get('certifications', [UserDashController::class, 'certified'])->name('certified');
-Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+Route::resource('courses', CourseController::class);
 });
 
-Route::prefix('admin')->group(function() {
+/** mîddleware admîn **/
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses', AdminCourseController::class)->except(['show']);
     Route::get('list-courses/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
     Route::get('list-courses/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);
     Route::resource('users', UserController::class);
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
-    });
 
-
-    Route::resource('courses', CourseController::class);
+});
 
 
 
