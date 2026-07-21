@@ -25,7 +25,7 @@
         <input
           type="text"
           placeholder="Rechercher un cours..."
-          class="w-64 py-2 pl-10 pr-4 text-sm bg-gray-100 border border-transparent rounded-full focus:outline-none focus:bg-white focus:border-gray-300 transition-colors"
+          class="w-64 py-2 pl-10 pr-4 text-sm bg-gray-100 border border-transparent rounded-full focus:outline-none   transition-colors"
         />
       </div>
 
@@ -46,7 +46,7 @@
         @auth
 
             <a class="inline-flex items-center space-x-3 p-1.5 pr-3 rounded-2xl hover:bg-slate-100/80 transition-all duration-200 focus:outline-none group"
-             href="{{ route('dashboard') }}">
+             href="{{ Auth()->user()->role === 'user' ? route('user-dashboard') : route('dashboard') }}">
                 <!-- Avatar avec initiales -->
                 <div class="w-10 h-10 rounded-full bg-primary text-white font-black text-xs flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                     {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 2)) }}
