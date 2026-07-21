@@ -13,7 +13,7 @@ class UserDashController extends Controller
     }
     public function chapiter()
     {
-        return view('users.chapiters.index');
+        return view('users.courses.index');
     }
     public function certified()
     {

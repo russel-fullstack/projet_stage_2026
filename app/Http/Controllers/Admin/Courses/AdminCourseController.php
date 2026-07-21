@@ -13,4 +13,9 @@ class AdminCourseController extends Controller
         $courses = Course::all();
         return view('admin.courses.index', compact('courses'));
     }
+    public function create()
+    {
+        return view('courses.courses-create');
+    }
+
 }
