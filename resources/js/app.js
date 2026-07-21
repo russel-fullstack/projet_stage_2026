@@ -1,5 +1,11 @@
-import Chart from 'chart.js/auto'
-// Micro-interactions and effects
+import { ClassicEditor } from 'ckeditor5';
+import { Chart } from 'chart.js/auto';
+import { handleTypeChange } from './modules/lesson';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    handleTypeChange();
+});
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('mousedown', () => {
         button.classList.add('scale-95');
@@ -46,7 +52,6 @@ function generateRandomPassword() {
     field.type = 'text';
 }
 
-import { ClassicEditor } from 'ckeditor5';
 
 ClassicEditor
     .create(document.querySelector('#editor'), {
@@ -70,3 +75,4 @@ ClassicEditor
         ]
     })
     .catch(error => console.error(error));
+

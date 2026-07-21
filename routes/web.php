@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ChapiterController;
 use App\Http\Controllers\Admin\Courses\AdminCourseController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\RapportController;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\CourseController;
@@ -25,12 +27,15 @@ Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
 });
 
 Route::prefix('admin')->group(function() {
-    Route::resource('list-courses', AdminCourseController::class);
+    Route::resource('list-courses', AdminCourseController::class)->except(['show']);
+    Route::get('list-courses/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
+    Route::get('list-courses/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);
     Route::resource('users', UserController::class);
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });
+
 
     Route::resource('courses', CourseController::class);

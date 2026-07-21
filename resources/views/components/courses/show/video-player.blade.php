@@ -1,9 +1,5 @@
-       @props([
-    'poster' => 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1600&auto=format&fit=crop',
-    'src' => 'https://cdn.coverr.co/videos/coverr-developer-coding-in-vs-code-4601/1080p.mp4'
-])
 
-<div x-data="{ isPaused: true }" class="relative group w-full aspect-video bg-slate-950 rounded-2xl shadow-xl overflow-hidden border border-slate-800 ">
+<div  class="relative group w-full aspect-video bg-slate-950 rounded-2xl shadow-xl overflow-hidden border border-slate-800 ">
 
     <!-- L'élément vidéo -->
     <video

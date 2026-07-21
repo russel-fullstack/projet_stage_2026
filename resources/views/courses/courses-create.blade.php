@@ -1,6 +1,17 @@
 <x-layouts.admin.admin-layout>
-    <div class="min-h-screen py-10 px-4 sm:px-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm">
+    <div class="min-h-screen py-10 px-4 sm:px-6  mx-auto">
+
+        <div class="space-y-3 ml-35">
+
+            <nav class="flex items-center space-x-2 text-xs font-bold text-slate-400">
+                <a href="{{ route('list-courses.index') }}" class="hover:text-slate-600 transition-colors">Mes cours</a>
+                <span>&rsaquo;</span>
+                <span class="text-primary font-extrabold">nouveau cours</span>
+            </nav>
+
+            <h1 class="text-2xl font-black text-primary tracking-tight pb-7">Ajouter un nouveau cours</h1>
+        </div>
+        <div class="max-w-7xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm">
 
             <form action="" method="POST" enctype="multipart/form-data" class="space-y-8">
                 @csrf
@@ -77,15 +88,15 @@
                         Annuler
                     </a>
 
-                    <button
-                        type="submit"
+                    <a
+                       href="{{ route('list-courses.chapter') }}"
                         class="px-6 py-3.5 bg-[#18005A] hover:bg-[#110042] text-white font-extrabold text-xs rounded-2xl shadow-md transition-all inline-flex items-center space-x-2"
                     >
                         <span>Créer et passer aux chapitres</span>
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                             <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/>
                         </svg>
-                    </button>
+                    </a>
                 </div>
 
             </form>
