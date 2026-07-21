@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ config('app.name', 'EduMaster') }}</title>
+    <link rel="icon" href="{{ asset('logo.png') }}" type="image">
 
     @fonts
 

@@ -44,7 +44,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
                     @foreach ($courses as $course)
-                        <a href="{{ route('chapiters.test') }}">
+                        <a href="{{ route('courses.show', $course->id) }}">
                             <x-courses.course-card :course="$course" />
                         </a>
                     @endforeach

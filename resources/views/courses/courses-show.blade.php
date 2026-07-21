@@ -93,8 +93,8 @@
     <div class="min-h-screen bg-slate-50 ">
         <!-- Barre de navigation optionnelle ou Header de ton LMS ici -->
         <main class="max-w-[1600px] mx-auto p-4 md:p-6 lg:p-8">
-            <x-courses.show.breadcrumb :breadcrumb="$breadcrumbs" />
             <!-- Grille principale de la page -->
+            <h1 class="py-4 text-4xl text-primary font-extrabold underline">Cours: Masterclass en React Native</h1>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                 <!-- COLONNE GAUCHE : Lecteur, Titres, Onglets (Prend 8 colonnes sur 12) -->

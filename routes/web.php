@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
 
-Route::get('/pages/course', function () {
-    return view('courses.courses-show');
-})->name('chapiters.test');
-
 
 Route::prefix('user')->group(function () {
 Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
@@ -29,13 +25,12 @@ Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
 });
 
 Route::prefix('admin')->group(function() {
-    Route::resource('course', CourseController::class);
+    Route::resource('list-courses', AdminCourseController::class);
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);
     Route::resource('users', UserController::class);
-    Route::get('admin-chapiters', [AdminCourseController::class, 'index'])->name('admin-chapiters.index');
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
     });
 
-    Route::resource('chapiters', CourseController::class);
+    Route::resource('courses', CourseController::class);

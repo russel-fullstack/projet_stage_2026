@@ -1,7 +1,7 @@
 
 <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-3">
     <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl flex-shrink-0 {{ $bgImage }}"></div>
+        <div class="w-10 h-10 rounded-xl shrink-0 {{ $bgImage }}"></div>
         <div class="truncate">
             <p class="text-xs font-black text-gray-900 truncate">{{ $title }}</p>
             <p class="text-[10px] text-gray-400 font-medium">Par: <span class="font-bold text-gray-600">{{ $author }}</span></p>

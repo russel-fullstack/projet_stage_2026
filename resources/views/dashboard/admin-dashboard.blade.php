@@ -1,6 +1,5 @@
 <x-layouts.admin.admin-layout>
 
-    <x-slot:title>Tableau de bord - EduMaster</x-slot>
 
     <!-- SECTION DES STATISTIQUES -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

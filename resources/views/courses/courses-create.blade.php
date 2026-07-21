@@ -73,7 +73,7 @@
 
                 {{-- Actions de bas de page --}}
                 <div class="pt-4 flex items-center justify-end space-x-6">
-                    <a href="{{ route('admin-chapiters.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
+                    <a href="{{ route('list-courses.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
                         Annuler
                     </a>
 
