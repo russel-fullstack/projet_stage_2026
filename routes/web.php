@@ -22,7 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::prefix('user')->group(function () {
     Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
     Route::get('user-dashboard', [UserDashController::class, 'index'])->name('user-dashboard');
@@ -32,8 +31,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('courses', CourseController::class);
-
 });
+
+/** mîddleware admîn **/
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses', AdminCourseController::class)->except(['show']);
     Route::get('list-courses/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
