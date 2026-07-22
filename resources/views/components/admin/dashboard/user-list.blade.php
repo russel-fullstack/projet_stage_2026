@@ -15,7 +15,7 @@
                 <!-- Utilisateur & Profil -->
                 <td class="py-4 pl-2 flex items-center space-x-3 max-w-[300px]">
                     {{-- Avatar avec initiales --}}
-                    <div class="w-10 h-10 {{ $user['avatar_bg'] ?? 'bg-indigo-50 text-indigo-600' }} rounded-xl flex-shrink-0 flex items-center justify-center text-xs font-black relative shadow-sm">
+                    <div class="w-10 h-10 {{  'bg-indigo-50 text-indigo-600' }} rounded-xl flex-shrink-0 flex items-center justify-center text-xs font-black relative shadow-sm">
                         {{ $user['initials'] ?? 'U' }}
                         @if($user['is_online'] ?? false)
                             <span class="w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full absolute -top-0.5 -right-0.5 shadow-sm"></span>
