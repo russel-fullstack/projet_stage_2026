@@ -13,7 +13,7 @@ class UserList extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public array|Collection $users = []
+        public array|Collection $users
     ) {}
 
     /**

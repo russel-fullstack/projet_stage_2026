@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-50 flex items-center justify-between px-44 py-4 bg-white border-b border-gray-100 shadow shadow-accent/8 ">
+<nav class="sticky top-0 z-50 flex items-center justify-between px-8 py-4 bg-white border-b border-gray-100 shadow shadow-accent/8 ">
     <div class="flex items-center space-x-12">
       <a href="/" class="text-2xl font-bold text-primary">EduMaster</a>
 
@@ -9,10 +9,6 @@
         {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
       </div>
 
-    <div class="relative py-2 flex flex-row items-center gap-1">
-        <a href="#" class="text-lg font-semibold text-primary">Tutoriels</a>
-        {{-- <span class="absolute bottom-0 left-0 w-full h-0.75 bg-primary rounded-full"></span> --}}
-      </div>
     </div>
 
     <div class="flex items-center space-x-6">
@@ -57,7 +53,6 @@
                     <p class="text-xs font-extrabold text-[#110B29] leading-none">
                         {{ Auth::user()->name ?? 'Admin' }}
                     </p>
-                    <p class="text-[10px] font-semibold text-slate-400 mt-0.5">Administrateur</p>
                 </div>
             </a>
         @endauth

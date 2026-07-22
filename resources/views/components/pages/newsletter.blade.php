@@ -20,7 +20,7 @@
 
       <div class="pt-4 w-full flex justify-center">
         <a
-          href="#"
+          href="{{ route('register') }}"
           class="px-8 py-3.5 bg-primary text-white font-semibold rounded-md text-center text-sm tracking-wide inline-block"
         >
           Démarrer mon inscription
@@ -28,7 +28,7 @@
       </div>
 
       <a
-        href="#"
+        href="{{ route('courses.index') }}"
         class="text-primary  hover:underline font-bold text-sm tracking-wide transition-colors duration-200 pt-2 block"
       >
         Explorer nos parcours

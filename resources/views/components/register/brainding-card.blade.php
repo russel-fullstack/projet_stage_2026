@@ -15,7 +15,7 @@
         <div class="space-y-4">
             <h1 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight">
                 Master Any Skill, <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">Entirely for Free.</span>
+                <span class="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-teal-200">Entirely for Free.</span>
             </h1>
             <p class="text-sm font-medium text-slate-300/80 leading-relaxed max-w-md">
                 Rejoignez plus de 2 millions d'apprenants. Nous croyons que l'éducation de haute qualité doit être accessible à tous.

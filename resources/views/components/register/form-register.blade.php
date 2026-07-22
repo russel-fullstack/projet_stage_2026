@@ -23,8 +23,8 @@
                 type="text"
                 value="{{ old('name') }}"
                 placeholder="John Doe"
-                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-[#110B29] focus:ring-2 focus:ring-[#110B29]/10 transition-all"
-                required
+                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800  focus:outline-none focus:ring-2 focus:ring-[#110B29]/10 transition-all"
+
                 autofocus
                 autocomplete="name"
             />
@@ -49,8 +49,8 @@
                 type="email"
                 value="{{ old('email') }}"
                 placeholder="nom@exemple.com"
-                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-[#110B29] focus:ring-2 focus:ring-[#110B29]/10 transition-all"
-                required
+                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800  focus:outline-none focus:ring-2 focus:ring-[#110B29]/10 transition-all"
+
                 autocomplete="username"
             />
         </div>
@@ -75,7 +75,7 @@
                     type="password"
                     placeholder="••••••••"
                     class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-[#110B29] focus:ring-2 focus:ring-[#110B29]/10 transition-all"
-                    required
+
                     autocomplete="new-password"
                 />
             </div>
@@ -98,7 +98,7 @@
                     type="password"
                     placeholder="••••••••"
                     class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-[#110B29] focus:ring-2 focus:ring-[#110B29]/10 transition-all"
-                    required
+
                     autocomplete="new-password"
                 />
             </div>
@@ -110,7 +110,7 @@
 
     <!-- Conditions -->
     <div class="flex items-center pt-1">
-        <input id="terms" name="terms" type="checkbox" class="w-4 h-4 rounded border-slate-300 text-[#110B29] focus:ring-[#110B29]/20 cursor-pointer" required>
+        <input id="terms" name="terms" type="checkbox" class="w-4 h-4 rounded border-slate-300 text-[#110B29] focus:ring-[#110B29]/20 cursor-pointer" >
         <label for="terms" class="ml-2 text-xs font-medium text-slate-600 cursor-pointer">
             J'accepte les <a href="#" class="text-[#110B29] font-bold underline hover:text-purple-700">Conditions</a> et la <a href="#" class="text-[#110B29] font-bold underline hover:text-purple-700">Confidentialité</a>.
         </label>
@@ -120,7 +120,7 @@
     <div class="pt-2">
         <button
             type="submit"
-            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-[#110B29] hover:bg-[#1b123d] active:bg-[#0a061a] text-white font-extrabold text-xs rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#110B29]/20 focus:ring-offset-2 active:scale-[0.98] cursor-pointer"
+            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-[#110B29] hover:bg-[#1b123d] text-white font-extrabold text-xs rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#110B29]/20 focus:ring-offset-2 active:scale-[0.98] cursor-pointer"
         >
             Créer mon compte
         </button>

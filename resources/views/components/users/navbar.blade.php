@@ -31,7 +31,6 @@
                         <div class="p-1.5 space-y-1">
 
                             <x-dropdown-link
-                                :href="route('profile.edit')"
                                 class="flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-extrabold text-slate-700 hover:text-[#110B29] hover:bg-slate-50 transition-all duration-150"
                             >
                                 <svg class="w-4 h-4 text-slate-400 group-hover:text-[#110B29] transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -78,8 +77,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('user-dashboard')" :active="request()->routeIs('user-dashboard')">
-                Dashboard
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
 
@@ -91,7 +90,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link >
                     Mon Profil
                 </x-responsive-nav-link>
 
