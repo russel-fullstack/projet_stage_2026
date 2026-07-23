@@ -29,15 +29,34 @@ Route::middleware(['auth'])->group(function () {
     Route::get('certifications', [UserDashController::class, 'certified'])->name('certified');
     Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
     Route::resource('suggestion-course', SuggestionController::class)->only(['index', 'store']);
-});
-});
+        Route::get('/profile/password', function () {
+            return view('profile.user.password-edit');
+        })->name('profile.user.password.edit');
 
+        Route::get('/profile/security', function () {
+            return view('profile.user.security');
+        })->name('profile.user.security');
+
+        Route::get('/profile/login-info', function () {
+            return view('profile.user.login-info');
+        })->name('profile.user.login-info');
+
+
+    });
 
 Route::get('/profile', [ProfileController::class, 'edit'])
     ->name('profile.edit');
 
+Route::delete('/profile', [ProfileController::class, 'destroy'])
+    ->name('profile.destroy');
+
 Route::patch('/profile', [ProfileController::class, 'update'])
     ->name('profile.update');
+Route::put('/profile', [ProfileController::class, 'updatePassword'])
+    ->name('profile.password.update');
+
+});
+
 
 Route::resource('courses', CourseController::class);
 
@@ -51,4 +70,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('users', UserController::class);
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
 
+    Route::get('/profile/password', function () {
+        return view('profile.admin.password-edit');
+    })->name('profile.password.edit');
+
+    Route::get('/profile/security', function () {
+        return view('profile.admin.security');
+    })->name('profile.security');
+
+    Route::get('/profile/login-info', function () {
+        return view('profile.admin.login-info');
+    })->name('profile.login-info');
 });
