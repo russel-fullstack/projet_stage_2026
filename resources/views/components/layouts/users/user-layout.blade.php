@@ -25,6 +25,5 @@
 
 </div>
 
-<x-pages.footer/>
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -12,7 +13,8 @@ class CourseController extends Controller
         $courses = Course::with('specialty')
         ->latest()
         ->paginate(5);
-        return view('courses.courses-index', compact('courses'));
+        $specialties = Specialty::all();
+        return view('courses.courses-index', compact('courses', 'specialties'));
     }
 
 
@@ -22,4 +24,21 @@ class CourseController extends Controller
         return view('courses.courses-show', compact('course'));
     }
 
+    public function create()
+    {
+        $specialties = Specialty::all();
+        $courses = Course::all();
+        return view('courses.courses-create', compact('specialties', 'courses'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'specialty_id' => 'required',
+        ]);
+        Course::created($request->all());
+        $specialties = Specialty::all();
+        return redirect()->route('courses.index', compact('specialties'));
+    }
 }

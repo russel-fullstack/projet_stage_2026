@@ -18,10 +18,8 @@
                                     <p class="text-xs font-black text-gray-900 leading-none">{{ Auth()->user()->name }}</p>
                                     <p class="text-[10px] text-gray-400 font-medium mt-0.5">{{ Auth()->user()->email }}</p>
                                 </div>
-                                <div class="w-9 h-9 bg-gray-200 rounded-full flex items-center justify-center text-[#002266] font-bold">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
-                                    </svg>
+                                <div class="w-10 h-10 rounded-full bg-primary text-white font-black text-xs flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                                    {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 2)) }}
                                 </div>
                             </a>
                         </button>
@@ -31,6 +29,7 @@
                         <div class="p-1.5 space-y-1">
 
                             <x-dropdown-link
+                                :href="route('profile.edit')"
                                 class="flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-extrabold text-slate-700 hover:text-[#110B29] hover:bg-slate-50 transition-all duration-150"
                             >
                                 <svg class="w-4 h-4 text-slate-400 group-hover:text-[#110B29] transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -90,7 +89,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link >
+                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                     Mon Profil
                 </x-responsive-nav-link>
 
