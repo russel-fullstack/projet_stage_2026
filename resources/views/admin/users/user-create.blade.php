@@ -28,7 +28,7 @@
                                         value="{{ old('name') }}"
                                         placeholder="Ex: Jean Dupont"
                                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50  transition-all"
-                                        required
+
                                     >
                                 </div>
 
@@ -41,7 +41,7 @@
                                         value="{{ old('email') }}"
                                         placeholder="j.dupont@exemple.fr"
                                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                                        required
+
                                     >
                                 </div>
                             </div>

@@ -23,6 +23,6 @@ class Course extends Model
 
     public function chapiters(): HasMany
     {
-        return $this->hasMany(Chapiter::class);
+        return $this->hasMany(Chapiter::class, 'course_id')->orderBy('order');
     }
 }

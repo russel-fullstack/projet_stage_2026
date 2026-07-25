@@ -20,6 +20,11 @@
             'route' => 'profile.user.login-info',
             'icon' => 'login',
         ],
+        [
+            'name' => 'Passkeys',
+            'route' => 'profile.passkeys',
+            'icon' => 'shield',
+        ],
 
     ];
 @endphp

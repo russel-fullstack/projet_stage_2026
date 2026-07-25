@@ -11,10 +11,17 @@ class Chapiter extends Model
     protected $fillable = [
         'title',
         'course_id',
+        'order',
     ];
+    protected $table = 'chapiters';
 
     public function course() : BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function lessons() : HasMany
+    {
+        return $this->hasMany(Lesson::class, 'chapiter_id');
     }
 }

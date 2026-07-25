@@ -55,6 +55,14 @@ Route::patch('/profile', [ProfileController::class, 'update'])
 Route::put('/profile', [ProfileController::class, 'updatePassword'])
     ->name('profile.password.update');
 
+Route::get('/user/passkeys', function () {
+        return view('profile.user.passkeys', [
+            'user' => auth()->user(),
+            'passkeys' => auth()->user()->passkeys,
+        ]);
+    })->name('profile.passkeys');
+
+
 });
 
 
@@ -62,8 +70,13 @@ Route::resource('courses', CourseController::class);
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses', AdminCourseController::class)->except(['show']);
-    Route::get('list-courses/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
-    Route::get('list-courses/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
+    Route::get('list-courses/{course}/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
+    Route::post('list-courses/{course}/', [ChapiterController::class, 'store'])->name('chapiters.store');
+    Route::resource('list-courses/chapiters', ChapiterController::class)->except(['create', 'store']);
+
+    Route::get('list-courses/{course}/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
+    Route::post('list-courses/{course}/lessons', [LessonController::class, 'store'])->name('list-courses.lessons.store');
+    Route::resource('list-courses/lessons', LessonController::class)->except(['create', 'store']);
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);

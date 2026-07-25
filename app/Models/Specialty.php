@@ -10,7 +10,8 @@ class Specialty extends Model
 {
     protected $fillable = [
         'name',
-        'program_id'
+        'program_id',
+        'description',
     ];
 
     public function program(): BelongsTo

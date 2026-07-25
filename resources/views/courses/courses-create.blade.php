@@ -1,106 +1,183 @@
 <x-layouts.admin.admin-layout>
-    <div class="min-h-screen py-10 px-4 sm:px-6  mx-auto">
 
-        <div class="space-y-3 ml-35">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-            <nav class="flex items-center space-x-2 text-xs font-bold text-slate-400">
-                <a href="{{ route('list-courses.index') }}" class="hover:text-slate-600 transition-colors">Mes cours</a>
-                <span>&rsaquo;</span>
-                <span class="text-primary font-extrabold">nouveau cours</span>
-            </nav>
+        <!-- HEADER DE PAGE -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-2 rounded-full bg-backcheck border border-slate-200/60 text-primary text-xs font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    Éditeur de cours
+                </div>
+                <h1 class="text-3xl font-extrabold text-primary tracking-tight">
+                    Nouveau cours
+                </h1>
+                <p class="text-sm text-primary">
+                    Définissez les bases de votre module avant d'ajouter le programme pédagogique.
+                </p>
+            </div>
 
-            <h1 class="text-2xl font-black text-primary tracking-tight pb-7">Ajouter un nouveau cours</h1>
+            <a href="{{ route('courses.index') }}"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-bold text-primary hover:bg-slate-50 hover:border-slate-300 transition-all duration-200 shadow-sm active:scale-[0.98]">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+                Retour
+            </a>
         </div>
-        <div class="max-w-7xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm">
 
-            <form action="" method="POST" enctype="multipart/form-data" class="space-y-8">
-                @csrf
+        <!-- INDICATEUR D'ÉTAPES -->
+        <div class="pt-3">
+            <x-admin.course-steps />
+        </div>
 
-                {{-- Section Supérieure : Titre, Catégorie, Description courte & Notice --}}
-                <div class="grid grid-cols-12 gap-6">
 
-                    {{-- Titre du cours (8 cols) --}}
-                    <div class="col-span-12 md:col-span-8 space-y-1.5">
-                        <label for="title" class="block text-xs font-black text-gray-900">Titre du cours</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            placeholder="ex: Introduction au Design UI/UX moderne"
-                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all"
+        <!-- FORMULAIRE -->
+        <form
+            method="POST"
+            action="{{ route('courses.store') }}"
+            enctype="multipart/form-data"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+        >
+            @csrf
 
-                        >
-                    </div>
+            <!-- SECTION GAUCHE : Informations (7/12) -->
+            <div class="lg:col-span-7 bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-6">
 
-                    {{-- Catégorie (Spécialité) (4 cols) --}}
-                    <div class="col-span-12 md:col-span-4 space-y-1.5">
-                        <label for="category_id" class="block text-xs font-black text-gray-900">Catégorie (Spécialité)</label>
-                        <div class="relative">
-                            <select
-                                id="category_id"
-                                name="category_id"
-                                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all pr-10"
-
-                            >
-                                <option value="" disabled selected>Sélectionner</option>
-                                <option value="1">Design UI/UX</option>
-                                <option value="2">Développement Web</option>
-                                <option value="3">Data & IA</option>
-                                <option value="4">Marketing Digital</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Description courte (8 cols) --}}
-                    <div class="col-span-12 md:col-span-8 space-y-1.5">
-                        <label for="short_description" class="block text-xs font-black text-gray-900">Description courte</label>
-                        <textarea
-                            id="short_description"
-                            name="short_description"
-                            rows="3"
-                            placeholder="Un résumé percutant pour attirer vos futurs apprenants..."
-                            class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all resize-none"
-
-                        ></textarea>
-                    </div>
-
-                    {{-- Notice Cours gratuit (4 cols) --}}
-                    <div class="col-span-12 md:col-span-4 flex items-center">
-                        <x-courses.create.free-notice />
-                    </div>
-
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-100">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-white font-bold text-xs">01</span>
+                    <h2 class="text-base font-bold text-primary">Informations générales</h2>
                 </div>
 
-                {{-- Section : Vignette du cours --}}
-                <x-courses.create.file-uploader />
+                <!-- Spécialité -->
+                <div class="space-y-2">
+                    <label for="specialty_id" class="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Spécialité & Programme <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <select
+                            id="specialty_id"
+                            name="specialty_id"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50/50 text-primary text-sm font-medium focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all duration-200 outline-none appearance-none cursor-pointer"
+                        >
+                            <option value="" disabled selected>Sélectionnez une option...</option>
+                            @foreach ($specialties as $specialty)
+                                <option
+                                    value="{{ $specialty->id }}"
+                                    @selected(old('specialty_id') == $specialty->id)
+                                >
+                                    {{ $specialty->program->name }} — {{ $specialty->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                        </div>
+                    </div>
+                    @error('specialty_id')
+                        <p class="text-xs font-semibold text-rose-600 flex items-center gap-1.5 mt-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
 
-                {{-- Section : Description détaillée avec éditeur WYSIWYG --}}
-               <x-courses.create.rich-text-editor/>
+                <!-- Nom du cours -->
+                <div class="space-y-2">
+                    <label for="name" class="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Titre du cours <span class="text-rose-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="title"
+                        value="{{ old('title', old('name')) }}"
+                        placeholder="ex. Développer une API REST avec Laravel"
+                        class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50/50 text-primary text-sm font-medium placeholder:text-slate-400 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all duration-200 outline-none"
+                    >
+                    @error('title')
+                        <p class="text-xs font-semibold text-rose-600 flex items-center gap-1.5 mt-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
 
-                {{-- Actions de bas de page --}}
-                <div class="pt-4 flex items-center justify-end space-x-6">
-                    <a href="{{ route('list-courses.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
+                <!-- Description -->
+                <div class="space-y-2">
+                    <label for="description" class="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Description
+                    </label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="6"
+                        placeholder="Résumez en quelques lignes le contenu et les objectifs du cours..."
+                        class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50/50 text-primary text-sm font-medium placeholder:text-slate-400 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all duration-200 outline-none resize-none"
+                    >{{ old('description') }}</textarea>
+                    @error('description')
+                        <p class="text-xs font-semibold text-rose-600 flex items-center gap-1.5 mt-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+            </div>
+
+            <!-- SECTION DROITE : Média & Actions (5/12) -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- Zone Image -->
+                <div class="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-6">
+                    <div class="flex items-center gap-3 pb-4 border-b border-slate-100">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-white font-bold text-xs">02</span>
+                        <h2 class="text-base font-bold text-primary">Visuel de couverture</h2>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-1 border border-slate-200/80 rounded-2xl bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                            <x-courses.create.file-uploader />
+                        </div>
+
+                        @error('image_cover')
+                            <p class="text-xs font-semibold text-rose-600 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-3">
+                        <svg class="w-5 h-5 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+                        <p class="text-xs text-primary leading-relaxed font-normal">
+                            Format recommandé : <strong class="text-primary font-semibold">16:9</strong> (ex. 1280×720 px). Fichiers acceptés : PNG, JPG, WebP.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Zone d'Action finale -->
+                <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center gap-3">
+                    <a
+                        href="{{ route('courses.index') }}"
+                        class="w-full sm:w-1/3 py-3.5 px-4 rounded-xl border border-slate-200/80 text-center text-xs font-bold text-primary hover:bg-slate-50 transition-all active:scale-[0.98]"
+                    >
                         Annuler
                     </a>
 
-                    <a
-                       href="{{ route('list-courses.chapter') }}"
-                        class="px-6 py-3.5 bg-[#18005A] hover:bg-[#110042] text-white font-extrabold text-xs rounded-2xl shadow-md transition-all inline-flex items-center space-x-2"
+                    <button
+                        type="submit"
+                        class="w-full sm:w-2/3 py-3.5 px-6 rounded-xl bg-primary hover:bg-primary text-white text-xs font-bold tracking-wide shadow-md shadow-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 group"
                     >
-                        <span>Créer et passer aux chapitres</span>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                            <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/>
+                        <span>Continuer</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
                         </svg>
-                    </a>
+                    </button>
                 </div>
 
-            </form>
+            </div>
 
-        </div>
+        </form>
+
     </div>
+
 </x-layouts.admin.admin-layout>
