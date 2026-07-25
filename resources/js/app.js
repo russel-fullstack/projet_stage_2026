@@ -2,13 +2,98 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
-import { ClassicEditor } from 'ckeditor5';
-import { Chart } from 'chart.js/auto';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
-import "@hotwired/turbo";
-
 window.Plyr = Plyr;
+
+import "@hotwired/turbo";
+import { Passkeys } from "@laravel/passkeys";
+/**await Passkeys.register({ name: "MacBook Pro" });
+await Passkeys.verify();
+
+const registerButton = document.querySelector('#register-passkey');
+
+registerButton?.addEventListener('click', async () => {
+    const message = document.querySelector('#passkey-message');
+
+    try {
+        await Passkeys.verify({
+            routes: {
+                options: "/passkeys/confirm/options",
+                submit: "/passkeys/confirm",
+            },
+        });
+
+        await Passkeys.register({
+            name:"MacBook Pro",
+            routes: {
+                options: '/user/passkeys/options',
+                store: '/user/passkeys',
+            },
+        });
+
+        message.classList.remove('hidden');
+        message.classList.add('bg-emerald-50', 'text-emerald-700');
+
+        message.textContent =
+            'Votre passkey a été ajoutée avec succès.';
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+
+    } catch (error) {
+
+        console.error('Erreur Passkey:', error);
+
+        const message = document.querySelector('#passkey-message');
+
+        message.classList.remove('hidden');
+        message.classList.add('bg-rose-50', 'text-rose-700');
+
+        message.textContent = error.message ?? 'Erreur inconnue.';
+    }
+});
+
+const loginPasskeyButton = document.querySelector('#login-passkey');
+
+loginPasskeyButton?.addEventListener('click', async () => {
+    const message = document.querySelector('#passkey-login-message');
+
+    loginPasskeyButton.disabled = true;
+
+    try {
+        await Passkeys.verify({
+            routes: {
+                options: "/passkeys/confirm/options",
+                submit: "/passkeys/confirm",
+            },
+        });
+
+        await Passkeys.login({
+            name:"MacBook Pro",
+            routes: {
+                options: '/user/passkeys/options',
+                store: '/user/passkeys',
+            },
+        });
+
+        window.location.href = '/user/user-dashboard';
+
+    } catch (error) {
+        console.error('Erreur Passkey Login:', error);
+
+        message.classList.remove('hidden');
+        message.classList.add('text-rose-600');
+
+        message.textContent =
+            error.message ??
+            'Impossible de se connecter avec cette passkey.';
+
+        loginPasskeyButton.disabled = false;
+    }
+});**/
+
 
 document.addEventListener('DOMContentLoaded', () => {
 

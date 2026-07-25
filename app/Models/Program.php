@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Program extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'description',
     ];
 
     public function specialties(): HasMany

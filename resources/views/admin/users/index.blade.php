@@ -20,7 +20,7 @@
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Utilisateurs</p>
-                        <h4 class="text-xl font-black text-gray-900 leading-tight">12,842</h4>
+                        <h4 class="text-xl font-black text-gray-900 leading-tight">{{ count(\App\Models\User::all()) }}</h4>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Nouveaux (30j)</p>
-                        <h4 class="text-xl font-black text-gray-900 leading-tight">+154</h4>
+                        <h4 class="text-xl font-black text-gray-900 leading-tight">+5</h4>
                     </div>
                 </div>
             </div>
@@ -99,16 +99,16 @@
                     <tbody class="text-xs font-bold divide-y divide-gray-50">
 
                     <!-- Ligne 1 : Admin -->
-                    <tr>
+                    <tr @foreach($users as $user) >
                         <td class="py-4 flex items-center space-x-3">
-                            <div class="w-9 h-9 bg-[#002266] text-white rounded-full flex items-center justify-center font-extrabold tracking-wide">JA</div>
+                            <div class="w-9 h-9 bg-[#002266] text-white rounded-full flex items-center justify-center font-extrabold tracking-wide">{{ strtoupper(substr($user->name ?? 'A', 0, 2)) }}</div>
                             <div>
-                                <p class="font-black text-gray-900">Jean-Luc Picard</p>
-                                <p class="text-[10px] text-gray-400 font-medium">jeanluc@enterprise.com</p>
+                                <p class="font-black text-gray-900">{{ $user->name }}</p>
+                                <p class="text-[10px] text-gray-400 font-medium">{{ $user->email }}</p>
                             </div>
                         </td>
                         <td class="py-4">
-                            <span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-md text-[9px] font-black uppercase tracking-wider">Admin</span>
+                            <span class="px-2.5 py-1 {{ $user->role === 'admin' ? 'bg-red-100 text-red-500' : 'bg-blue-100 text-blue-500'}} rounded-md text-[9px] font-black uppercase tracking-wider">{{ $user->role }}</span>
                         </td>
                         <td class="py-4 text-gray-500 font-medium">12 Jan 2024</td>
                         <td class="py-4">
@@ -122,106 +122,20 @@
                             <x-admin.users.table-action type="suspend" status="active" />
                             <x-admin.users.table-action type="delete" />
                         </td>
-                    </tr>
+                    </tr @endforeach>
 
                     <!-- Ligne 2 : Instructeur -->
-                    <tr>
-                        <td class="py-4 flex items-center space-x-3">
-                            <div class="w-9 h-9 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center font-extrabold">MC</div>
-                            <div>
-                                <p class="font-black text-gray-900">Marie Curie</p>
-                                <p class="text-[10px] text-gray-400 font-medium">marie.curie@science.edu</p>
-                            </div>
-                        </td>
-                        <td class="py-4">
-                            <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-md text-[9px] font-black uppercase tracking-wider">Instructeur</span>
-                        </td>
-                        <td class="py-4 text-gray-500 font-medium">05 Fév 2024</td>
-                        <td class="py-4">
-                            <div class="flex items-center space-x-1.5 text-emerald-600">
-                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
-                                <span>Actif</span>
-                            </div>
-                        </td>
-                        <td class="py-4 text-right space-x-1 pr-2">
-                            <x-admin.users.table-action type="edit" />
-                            <x-admin.users.table-action type="suspend" status="active" />
-                            <x-admin.users.table-action type="delete" />
-                        </td>
-                    </tr>
 
-                    <!-- Ligne 3 : Étudiant Banni -->
-                    <tr>
-                        <td class="py-4 flex items-center space-x-3">
-                            <div class="w-9 h-9 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-extrabold">ST</div>
-                            <div>
-                                <p class="font-black text-gray-900">Sylvain Tardy</p>
-                                <p class="text-[10px] text-gray-400 font-medium">sylvain@tardy.fr</p>
-                            </div>
-                        </td>
-                        <td class="py-4">
-                            <span class="px-2.5 py-1 bg-orange-50 text-orange-600 rounded-md text-[9px] font-black uppercase tracking-wider">Étudiant</span>
-                        </td>
-                        <td class="py-4 text-gray-500 font-medium">18 Nov 2023</td>
-                        <td class="py-4">
-                            <div class="flex items-center space-x-1.5 text-red-500">
-                                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                                <span>Banni</span>
-                            </div>
-                        </td>
-                        <td class="py-4 text-right space-x-1 pr-2">
-                            <x-admin.users.table-action type="edit" />
-                            <x-admin.users.table-action type="suspend" status="banned" />
-                            <x-admin.users.table-action type="delete" />
-                        </td>
-                    </tr>
-
-                    <!-- Ligne 4 : Étudiant Actif -->
-                    <tr>
-                        <td class="py-4 flex items-center space-x-3">
-                            <div class="w-9 h-9 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center font-extrabold">TE</div>
-                            <div>
-                                <p class="font-black text-gray-900">Thomas Edison</p>
-                                <p class="text-[10px] text-gray-400 font-medium">tom@invention.com</p>
-                            </div>
-                        </td>
-                        <td class="py-4">
-                            <span class="px-2.5 py-1 bg-orange-50 text-orange-600 rounded-md text-[9px] font-black uppercase tracking-wider">Étudiant</span>
-                        </td>
-                        <td class="py-4 text-gray-500 font-medium">24 Déc 2023</td>
-                        <td class="py-4">
-                            <div class="flex items-center space-x-1.5 text-emerald-600">
-                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
-                                <span>Actif</span>
-                            </div>
-                        </td>
-                        <td class="py-4 text-right space-x-1 pr-2">
-                            <x-admin.users.table-action type="edit" />
-                            <x-admin.users.table-action type="suspend" status="active" />
-                            <x-admin.users.table-action type="delete" />
-                        </td>
-                    </tr>
 
                     </tbody>
                 </table>
             </div>
 
             <!-- PAGINATION -->
-            <div class="flex flex-col sm:flex-row items-center justify-between border-t border-gray-100 pt-4 gap-4 text-xs font-semibold text-gray-400">
-                <span>Affichage de 1-4 sur 12,842</span>
-
-                <div class="flex items-center space-x-1">
-                    <button class="p-2 border border-gray-100 rounded-lg text-gray-300 hover:bg-gray-50 transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path></svg>
-                    </button>
-                    <button class="w-8 h-8 bg-[#002266] text-white rounded-lg font-bold text-xs">1</button>
-                    <button class="w-8 h-8 border border-gray-100 text-gray-600 hover:bg-gray-50 rounded-lg font-bold text-xs transition-colors">2</button>
-                    <button class="w-8 h-8 border border-gray-100 text-gray-600 hover:bg-gray-50 rounded-lg font-bold text-xs transition-colors">3</button>
-                    <button class="p-2 border border-gray-100 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path></svg>
-                    </button>
+                <div>
+                    {{ $users->links() }}
                 </div>
-            </div>
+
         </div>
 
         <!-- BLOC BAS : DOSSIER GLOBAL FOOTER -->

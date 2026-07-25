@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 
 class LessonController extends Controller
 {
-    public function create()
+    public function create(Course $course)
     {
-        return view('admin.lessons.create');
+        $course->load([
+            'chapiters.lessons',
+        ]);
+
+        return view(
+            'admin.lessons.create',
+            compact('course')
+        );
     }
 }

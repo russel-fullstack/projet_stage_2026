@@ -1,126 +1,398 @@
 <x-layouts.admin.admin-layout>
-    <div class="max-h-full py-5 px-4 sm:px-6">
-        <div class="max-w-[1600px] mx-auto space-y-6">
 
-            {{-- Breadcrumb & En-tête --}}
-            <div class="space-y-3">
+    <div class="max-w-6xl mx-auto px-6 py-10">
 
-                <nav class="flex items-center space-x-2 text-xs font-bold text-slate-400">
-                    <a href="{{ route('list-courses.index') }}" class="hover:text-slate-600 transition-colors">Mes cours</a>
-                    <span>&rsaquo;</span>
-                    <a href="{{ route('list-courses.create') }}" class="hover:text-slate-600 transition-colors">nouveau cours</a>
-                    <span>&rsaquo;</span>
-                    <span class="text-[#110B29] font-extrabold">nouveau chapitre</span>
-                </nav>
+        {{-- En-tête --}}
+        <div class="mb-8">
 
-                <h1 class="text-2xl font-black text-primary tracking-tight">Ajouter un nouveau chapitre</h1>
-            </div>
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-600">
+                Création d'une formation
+            </p>
 
-            <form action="" method="POST" class="space-y-6">
-                @csrf
+            <h1 class="mt-2 text-2xl font-extrabold text-primary">
+                Ajouter les chapitres
+            </h1>
 
-                <div class="grid grid-cols-12 gap-8">
-
-                    {{-- Panneau Principal (8 colonnes) --}}
-                    <div class="col-span-12 lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-8">
-
-                        {{-- CHAMP : Nom du chapitre --}}
-                        <div class="space-y-2">
-                            <label for="chapter_title" class="block text-xs font-bold text-gray-700">Nom du chapitre</label>
-                            <input
-                                type="text"
-                                id="chapter_title"
-                                name="title"
-                                placeholder="Ex: Fondamentaux de l'UX Design"
-                                oninput="document.getElementById('preview-title').innerText = this.value || 'Nouveau chapitre...'"
-                                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#18005A]/20 focus:border-[#18005A] transition-all"
-                                required
-                            >
-                        </div>
-
-                        <hr class="border-gray-100">
-
-                        {{-- SECTION : Contenu du chapitre --}}
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="text-base font-black text-[#18005A]">Contenu du chapitre</h3>
-                                <p class="text-xs text-gray-400 font-medium">Commencez à structurer votre chapitre en ajoutant différents types de leçons.</p>
-                            </div>
-
-                            {{-- Boutons Types de Leçons --}}
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <button type="button" class="p-4 rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#18005A] bg-white hover:bg-indigo-50/10 text-center transition-all flex flex-col items-center justify-center space-y-2 group">
-                                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-[#18005A] flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs font-black text-gray-700 group-hover:text-[#18005A]">Ajouter une vidéo</span>
-                                </button>
-
-                                <button type="button" class="p-4 rounded-2xl border-2 border-dashed border-gray-200 hover:border-emerald-500 bg-white hover:bg-emerald-50/10 text-center transition-all flex flex-col items-center justify-center space-y-2 group">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs font-black text-gray-700 group-hover:text-emerald-600">Ajouter un document</span>
-                                </button>
-
-                                <button type="button" class="p-4 rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#18005A] bg-white hover:bg-indigo-50/10 text-center transition-all flex flex-col items-center justify-center space-y-2 group">
-                                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-[#18005A] flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.01" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs font-black text-gray-700 group-hover:text-[#18005A]">Ajouter un quiz</span>
-                                </button>
-                            </div>
-
-                            {{-- État Vide (Empty State) --}}
-                            <div class="p-8 border-2 border-dashed border-gray-100 rounded-3xl bg-gray-50/50 text-center space-y-3">
-                                <div class="w-12 h-12 rounded-2xl bg-gray-100 text-gray-400 flex items-center justify-center mx-auto">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <p class="text-xs text-gray-400 font-medium max-w-xs mx-auto pb-5">
-                                    Aucune leçon n'a été ajoutée à ce chapitre pour le moment. Utilisez les boutons ci-dessus pour commencer.
-                                </p>
-
-                                <a href="{{ route('list-courses.lesson-create') }}" class="px-6 py-3 bg-primary  text-white font-extrabold text-xs rounded-2xl shadow-md space-x-2">
-                                    Ajouter une nouvelle leçon
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {{-- Barre Latérale (4 colonnes) --}}
-                    <div class="col-span-12 lg:col-span-4 space-y-6">
-                        <x-admin.chapters.expert-tips />
-                        <x-admin.chapters.course-preview/>
-                    </div>
-
-                </div>
-
-                {{-- Barre d'actions basse --}}
-                <div class="flex items-center justify-end space-x-3 pt-4">
-                    <a href="#" class="px-6 py-3 border border-gray-200 hover:bg-gray-100 text-gray-700 font-extrabold text-xs rounded-2xl transition-all">
-                        Annuler
-                    </a>
-
-                    <button type="submit" class="px-6 py-3 bg-[#18005A] hover:bg-[#110042] text-white font-extrabold text-xs rounded-2xl shadow-md transition-all flex items-center space-x-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                        </svg>
-                        <span>Enregistrer le chapitre</span>
-                    </button>
-                </div>
-
-            </form>
+            <p class="mt-2 text-sm text-slate-500">
+                Organisez le contenu de votre cours en plusieurs chapitres.
+            </p>
 
         </div>
+
+        {{-- Progression --}}
+        <x-admin.course-steps current="2" />
+
+        {{-- Informations du cours --}}
+        <div
+            class="mb-8 flex flex-col sm:flex-row gap-5
+            bg-white rounded-3xl border border-slate-200
+            p-5 shadow-sm"
+        >
+
+            {{-- Image --}}
+            <img
+                src="{{ asset('storage/'. $course->image_cover) }}"
+                alt="{{ $course->title }}"
+                class="w-full sm:w-40 h-28 object-cover rounded-2xl"
+            >
+
+            <div class="flex-1">
+
+                <p class="text-xs font-bold text-blue-600 uppercase">
+                    Cours en création
+                </p>
+
+                <h2 class="mt-1 text-lg font-extrabold text-primary">
+                    {{ $course->title }}
+                </h2>
+
+                <p class="mt-2 text-sm text-slate-500 line-clamp-2">
+                    {{ $course->description }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {{-- Messages --}}
+        @if (session('success'))
+
+            <div
+                class="mb-6 p-4 rounded-xl
+                bg-emerald-50 border border-emerald-200
+                text-sm font-bold text-emerald-700"
+            >
+                {{ session('success') }}
+            </div>
+
+        @endif
+
+        {{-- Layout --}}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {{-- Formulaire --}}
+            <div
+                class="lg:col-span-1
+                bg-white rounded-3xl border border-slate-200
+                shadow-sm p-6 h-fit"
+            >
+
+                <div class="mb-6">
+
+                    <h2 class="text-base font-extrabold text-primary">
+                        Ajouter un chapitre
+                    </h2>
+
+                    <p class="mt-1 text-xs text-slate-500">
+                        Créez une nouvelle partie de votre cours.
+                    </p>
+
+                </div>
+
+                <form
+                    method="POST"
+                    action="{{ route(
+                        'chapiters.store',
+                        $course
+                    ) }}"
+                    class="space-y-5"
+                >
+
+                    @csrf
+
+                    {{-- Titre --}}
+                    <div>
+
+                        <label
+                            for="title"
+                            class="block mb-2 text-xs font-bold text-slate-700"
+                        >
+                            Titre du chapitre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            value="{{ old('title') }}"
+                            placeholder="Ex : Introduction à Laravel"
+                            class="w-full px-4 py-3 rounded-xl
+                            border border-slate-200
+                            text-sm font-medium
+                            focus:outline-none
+                            focus:border-primary
+                            focus:ring-1
+                            focus:ring-primary"
+                        >
+
+                        @error('title')
+
+                        <p class="mt-2 text-xs font-bold text-rose-600">
+                            {{ $message }}
+                        </p>
+
+                        @enderror
+
+                    </div>
+
+                    {{-- Description --}}
+                    <div>
+
+                        <label
+                            for="description"
+                            class="block mb-2 text-xs font-bold text-slate-700"
+                        >
+                            Description
+                            <span class="font-normal text-slate-400">
+                                (optionnelle)
+                            </span>
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="5"
+                            placeholder="Décrivez le contenu de ce chapitre..."
+                            class="w-full px-4 py-3 rounded-xl
+                            border border-slate-200
+                            text-sm
+                            focus:outline-none
+                            focus:border-primary
+                            focus:ring-1
+                            focus:ring-primary"
+                        >{{ old('description') }}</textarea>
+
+                        @error('description')
+
+                        <p class="mt-2 text-xs font-bold text-rose-600">
+                            {{ $message }}
+                        </p>
+
+                        @enderror
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full px-5 py-3 rounded-xl
+                        bg-primary text-white
+                        text-sm font-bold
+                        hover:bg-[#001a4d]
+                        transition-colors"
+                    >
+                        + Ajouter le chapitre
+                    </button>
+
+                </form>
+
+            </div>
+
+            {{-- Liste des chapitres --}}
+            <div class="lg:col-span-2">
+
+                <div
+                    class="bg-white rounded-3xl border border-slate-200
+                    shadow-sm overflow-hidden"
+                >
+
+                    {{-- En-tête --}}
+                    <div
+                        class="p-6 border-b border-slate-100
+                        flex items-center justify-between"
+                    >
+
+                        <div>
+
+                            <h2 class="text-base font-extrabold text-primary">
+                                Chapitres du cours
+                            </h2>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                {{ $course->chapiters->count() }}
+                                chapitre(s) ajouté(s)
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="w-10 h-10 rounded-xl
+                            bg-blue-50 text-blue-600
+                            flex items-center justify-center
+                            font-extrabold"
+                        >
+                            {{ $course->chapiters->count() }}
+                        </div>
+
+                    </div>
+
+                    {{-- Liste --}}
+                    <div class="divide-y divide-slate-100">
+
+                        @forelse ($course->chapiters as $index => $chapiter)
+
+                            <div
+                                class="p-5 flex items-start gap-4"
+                            >
+
+                                {{-- Numéro --}}
+                                <div
+                                    class="shrink-0 w-10 h-10 rounded-xl
+                                    bg-slate-100 text-primary
+                                    flex items-center justify-center
+                                    text-sm font-extrabold"
+                                >
+                                    {{ $index + 1 }}
+                                </div>
+
+                                {{-- Contenu --}}
+                                <div class="flex-1 min-w-0">
+
+                                    <h3
+                                        class="text-sm font-extrabold
+                                        text-slate-800"
+                                    >
+                                        {{ $chapiter->title }}
+                                    </h3>
+
+                                    @if ($chapiter->description)
+
+                                        <p
+                                            class="mt-1 text-xs
+                                            text-slate-500 line-clamp-2"
+                                        >
+                                            {{ $chapiter->description }}
+                                        </p>
+
+                                    @endif
+
+                                    <p
+                                        class="mt-2 text-[11px]
+                                        font-bold text-slate-400"
+                                    >
+                                        {{ $chapiter->lessons->count() }}
+                                        leçon(s)
+                                    </p>
+
+                                </div>
+
+                                {{-- Actions --}}
+                                <div class="flex items-center gap-2">
+
+                                    <form
+                                        method="POST"
+                                        action="{{ route(
+                                            'chapiters.destroy',
+                                            $chapiter
+                                        ) }}"
+                                        onsubmit="return confirm(
+                                            'Voulez-vous vraiment supprimer ce chapitre ?'
+                                        )"
+                                    >
+
+                                        @csrf
+
+                                        @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="w-9 h-9 rounded-lg
+                                            flex items-center justify-center
+                                            text-rose-500
+                                            hover:bg-rose-50
+                                            transition-colors"
+                                            title="Supprimer"
+                                        >
+                                            🗑️
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        @empty
+
+                            <div class="p-12 text-center">
+
+                                <div class="text-4xl mb-4">
+                                    📚
+                                </div>
+
+                                <h3
+                                    class="text-sm font-extrabold
+                                    text-slate-700"
+                                >
+                                    Aucun chapitre pour le moment
+                                </h3>
+
+                                <p
+                                    class="mt-2 text-xs
+                                    text-slate-500"
+                                >
+                                    Commencez par ajouter votre premier chapitre.
+                                </p>
+
+                            </div>
+
+                        @endforelse
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- Navigation --}}
+        <div
+            class="mt-8 flex items-center justify-between
+            bg-white rounded-3xl border border-slate-200
+            p-5 shadow-sm"
+        >
+
+            <a
+                href="{{ route('courses.create') }}"
+                class="px-5 py-3 rounded-xl
+                border border-slate-200
+                text-sm font-bold text-slate-600
+                hover:bg-slate-50"
+            >
+                ← Retour
+            </a>
+
+            @if ($course->chapiters->count() > 0)
+
+                <a
+                    href="{{ route(
+                        'list-courses.lesson-create',
+                        $course
+                    ) }}"
+                    class="px-6 py-3 rounded-xl
+                    bg-primary text-white
+                    text-sm font-bold
+                    hover:bg-[#001a4d]"
+                >
+                    Continuer vers les leçons →
+                </a>
+
+            @else
+
+                <button
+                    type="button"
+                    disabled
+                    class="px-6 py-3 rounded-xl
+                    bg-slate-200 text-slate-400
+                    text-sm font-bold cursor-not-allowed"
+                >
+                    Ajoutez un chapitre pour continuer →
+                </button>
+
+            @endif
+
+        </div>
+
     </div>
+
 </x-layouts.admin.admin-layout>

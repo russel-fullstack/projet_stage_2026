@@ -5,7 +5,6 @@
             <th class="pb-4 pl-2">Utilisateur</th>
             <th class="pb-4">Rôle / Badge</th>
             <th class="pb-4">Date d'inscription</th>
-            <th class="pb-4">Statut</th>
             <th class="pb-4 text-center">Actions</th>
         </tr>
         </thead>
@@ -13,29 +12,23 @@
         @forelse($users as $user)
             <tr class="hover:bg-gray-50/40 transition-colors">
                 <!-- Utilisateur & Profil -->
-                <td class="py-4 pl-2 flex items-center space-x-3 max-w-[300px]">
+                <td class="py-4 pl-2 flex items-center space-x-3 max-w-75">
                     {{-- Avatar avec initiales --}}
-                    <div class="w-10 h-10 {{  'bg-indigo-50 text-indigo-600' }} rounded-xl flex-shrink-0 flex items-center justify-center text-xs font-black relative shadow-sm">
-                        {{ $user['initials'] ?? 'U' }}
-                        @if($user['is_online'] ?? false)
+                    <div class="w-10 h-10 {{  'bg-indigo-50 text-indigo-600' }} rounded-xl shrink-0 flex items-center justify-center text-xs font-black relative shadow-sm">
+                        {{ strtoupper(substr($user->name ?? 'A', 0, 2)) }}
                             <span class="w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full absolute -top-0.5 -right-0.5 shadow-sm"></span>
-                        @endif
                     </div>
                     <div class="truncate">
-                        <p class="font-black text-gray-900 truncate">{{ $user['name'] ?? 'Inconnu' }}</p>
-                        <p class="text-[10px] text-tertiary font-medium mt-0.5 truncate">{{ $user['email'] ?? '' }}</p>
+                        <p class="font-black text-gray-900 truncate">{{ $user->name ?? 'Inconnu' }}</p>
+                        <p class="text-[10px] text-tertiary font-medium mt-0.5 truncate">{{ $user->email ?? '' }}</p>
                     </div>
                 </td>
 
                 <!-- Rôle / Badge -->
                 <td class="py-4">
-                    @switch($user['role'] ?? 'student')
-                        @case('super_admin')
+                    @switch($user->role ?? 'student')
+                        @case('admin')
                             <x-admin.dashboard.badge color="red">Admin</x-admin.dashboard.badge>
-                            @break
-
-                        @case('instructor')
-                            <x-admin.dashboard.badge color="blue">Formateur</x-admin.dashboard.badge>
                             @break
 
                         @default
@@ -50,19 +43,7 @@
                 </td>
 
                 <!-- Statut du Compte -->
-                <td class="py-4">
-                    @if($user['is_active'] ?? true)
-                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-md text-[9px] font-black uppercase tracking-wider inline-flex items-center">
-                                <span class="w-1 h-1 bg-emerald-500 rounded-full mr-1.5"></span>
-                                Actif
-                            </span>
-                    @else
-                        <span class="px-2.5 py-1 bg-rose-50 text-rose-500 rounded-md text-[9px] font-black uppercase tracking-wider inline-flex items-center">
-                                <span class="w-1 h-1 bg-rose-500 rounded-full mr-1.5"></span>
-                                Suspendu
-                            </span>
-                    @endif
-                </td>
+
 
                 <!-- Boutons d'actions contextuels -->
                 <td class="py-4 text-center">
@@ -89,4 +70,7 @@
         @endforelse
         </tbody>
     </table>
+    <div>
+        {{ $users->links() }}
+    </div>
 </div>

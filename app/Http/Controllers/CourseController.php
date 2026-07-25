@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
@@ -13,7 +14,9 @@ class CourseController extends Controller
         $courses = Course::with('specialty')
         ->latest()
         ->paginate(5);
-        $specialties = Specialty::all();
+        $specialties = Specialty::with('program')
+            ->orderBy('name')
+            ->get();
         return view('courses.courses-index', compact('courses', 'specialties'));
     }
 
@@ -26,19 +29,30 @@ class CourseController extends Controller
 
     public function create()
     {
-        $specialties = Specialty::all();
-        $courses = Course::all();
-        return view('courses.courses-create', compact('specialties', 'courses'));
+        $specialties = Specialty::with('program')
+            ->orderBy('name')
+            ->get();
+        return view('courses.courses-create', compact('specialties'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'specialty_id' => 'required',
-        ]);
-        Course::created($request->all());
-        $specialties = Specialty::all();
-        return redirect()->route('courses.index', compact('specialties'));
+        $data = $request->validated();
+
+        $data['image_cover'] = $request
+            ->file('image_cover')
+            ->store('courses', 'public');
+
+        $course = Course::create($data);
+
+        return redirect()
+            ->route(
+                'list-courses.chapter',
+                $course
+            )
+            ->with(
+                'success',
+                'Cours créé avec succès. Vous pouvez maintenant ajouter les chapitres.'
+            );
     }
 }

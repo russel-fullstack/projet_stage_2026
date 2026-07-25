@@ -1,5 +1,4 @@
 <div class="space-y-1.5" x-data="{ fileName: '' }">
-    <label class="block text-xs font-black text-gray-900">{{ $label }}</label>
 
     <div class="relative border-2 border-dashed border-indigo-200/80 hover:border-indigo-400 bg-gray-50/30 rounded-2xl p-6 text-center transition-all cursor-pointer group">
         <input

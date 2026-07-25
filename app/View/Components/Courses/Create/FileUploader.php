@@ -12,8 +12,7 @@ class FileUploader extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $name = 'thumbnail',
-        public string $label = 'Vignette du cours',
+        public string $name = 'image_cover',
         public string $hint = 'PNG, JPG ou WEBP (Max. 5Mo, Recommandé 1280×720)'
     ) {}
 

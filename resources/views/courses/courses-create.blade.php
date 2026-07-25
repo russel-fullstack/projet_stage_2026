@@ -1,106 +1,175 @@
 <x-layouts.admin.admin-layout>
-    <div class="min-h-screen py-10 px-4 sm:px-6  mx-auto">
 
-        <div class="space-y-3 ml-35">
+    <div class="max-w-7xl mx-auto p-6">
 
-            <nav class="flex items-center space-x-2 text-xs font-bold text-slate-400">
-                <a href="{{ route('list-courses.index') }}" class="hover:text-slate-600 transition-colors">Mes cours</a>
-                <span>&rsaquo;</span>
-                <span class="text-primary font-extrabold">nouveau cours</span>
-            </nav>
+        <div class="mb-8">
+            <h1 class="text-xl font-extrabold text-primary">
+                Ajouter un cours
+            </h1>
 
-            <h1 class="text-2xl font-black text-primary tracking-tight pb-7">Ajouter un nouveau cours</h1>
+            <p class="mt-1 text-sm text-slate-500">
+                Créez un nouveau cours avec son image de couverture.
+            </p>
         </div>
-        <div class="max-w-7xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm">
 
-            <form action="" method="POST" enctype="multipart/form-data" class="space-y-8">
+        <x-admin.course-steps/>
+
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+
+            <form
+                method="POST"
+                action="{{ route('courses.store') }}"
+                enctype="multipart/form-data"
+                class="space-y-6"
+            >
+
                 @csrf
 
-                {{-- Section Supérieure : Titre, Catégorie, Description courte & Notice --}}
-                <div class="grid grid-cols-12 gap-6">
+                {{-- Spécialité --}}
+                <div>
 
-                    {{-- Titre du cours (8 cols) --}}
-                    <div class="col-span-12 md:col-span-8 space-y-1.5">
-                        <label for="title" class="block text-xs font-black text-gray-900">Titre du cours</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            placeholder="ex: Introduction au Design UI/UX moderne"
-                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all"
+                    <label
+                        for="specialty_id"
+                        class="block mb-2 text-sm font-bold text-slate-700"
+                    >
+                        Spécialité
+                    </label>
 
-                        >
-                    </div>
+                    <select
+                        id="specialty_id"
+                        name="specialty_id"
 
-                    {{-- Catégorie (Spécialité) (4 cols) --}}
-                    <div class="col-span-12 md:col-span-4 space-y-1.5">
-                        <label for="category_id" class="block text-xs font-black text-gray-900">Catégorie (Spécialité)</label>
-                        <div class="relative">
-                            <select
-                                id="category_id"
-                                name="category_id"
-                                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-xs font-medium text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all pr-10"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm"
+                    >
 
+                        <option value="">
+                            Sélectionnez une spécialité
+                        </option>
+
+                        @foreach ($specialties as $specialty)
+
+                            <option
+                                value="{{ $specialty->id }}"
+                                @selected(
+                                    old(
+                                        'specialty_id',
+
+                                    ) == $specialty->id
+                                )
                             >
-                                <option value="" disabled selected>Sélectionner</option>
-                                <option value="1">Design UI/UX</option>
-                                <option value="2">Développement Web</option>
-                                <option value="3">Data & IA</option>
-                                <option value="4">Marketing Digital</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                                {{ $specialty->program->name }}
+                                —
+                                {{ $specialty->name }}
+                            </option>
 
-                    {{-- Description courte (8 cols) --}}
-                    <div class="col-span-12 md:col-span-8 space-y-1.5">
-                        <label for="short_description" class="block text-xs font-black text-gray-900">Description courte</label>
-                        <textarea
-                            id="short_description"
-                            name="short_description"
-                            rows="3"
-                            placeholder="Un résumé percutant pour attirer vos futurs apprenants..."
-                            class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-xs font-medium placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#002266]/20 focus:border-[#002266] transition-all resize-none"
+                        @endforeach
 
-                        ></textarea>
-                    </div>
+                    </select>
 
-                    {{-- Notice Cours gratuit (4 cols) --}}
-                    <div class="col-span-12 md:col-span-4 flex items-center">
-                        <x-courses.create.free-notice />
-                    </div>
+                    @error('specialty_id')
+                    <p class="mt-2 text-xs font-bold text-rose-600">
+                        {{ $message }}
+                    </p>
+                    @enderror
 
                 </div>
 
-                {{-- Section : Vignette du cours --}}
-                <x-courses.create.file-uploader />
+                {{-- Nom --}}
+                <div>
 
-                {{-- Section : Description détaillée avec éditeur WYSIWYG --}}
-               <x-courses.create.rich-text-editor/>
+                    <label
+                        for="name"
+                        class="block mb-2 text-sm font-bold text-slate-700"
+                    >
+                        Nom du cours
+                    </label>
 
-                {{-- Actions de bas de page --}}
-                <div class="pt-4 flex items-center justify-end space-x-6">
-                    <a href="{{ route('list-courses.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors">
+                    <input
+                        type="text"
+                        id="name"
+                        name="title"
+                        value="{{ old('name') }}"
+                        placeholder="Ex : Laravel de zéro à expert"
+
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm"
+                    >
+
+                    @error('title')
+                    <p class="mt-2 text-xs font-bold text-rose-600">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
+                </div>
+
+                {{-- Image --}}
+                <div>
+
+                    <label
+                        for="image_cover"
+                        class="block mb-2 text-sm font-bold text-slate-700"
+                    >
+                        Image de couverture
+                    </label>
+
+                    <x-courses.create.file-uploader/>
+
+                    @error('image_cover')
+                    <p class="mt-2 text-xs font-bold text-rose-600">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
+                </div>
+
+                {{-- Description --}}
+                <div>
+
+                    <label
+                        for="description"
+                        class="block mb-2 text-sm font-bold text-slate-700"
+                    >
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="7"
+                        placeholder="Décrivez le contenu du cours..."
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm"
+                    >{{ old('description') }}</textarea>
+
+                    @error('description')
+                    <p class="mt-2 text-xs font-bold text-rose-600">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
+                </div>
+
+                {{-- Actions --}}
+                <div class="flex gap-3">
+
+                    <a
+                        href="{{ route('list-courses.index') }}"
+                        class="px-5 py-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-600"
+                    >
                         Annuler
                     </a>
 
-                    <a
-                       href="{{ route('list-courses.chapter') }}"
-                        class="px-6 py-3.5 bg-[#18005A] hover:bg-[#110042] text-white font-extrabold text-xs rounded-2xl shadow-md transition-all inline-flex items-center space-x-2"
+                    <button
+                        type="submit"
+                        class="px-5 py-3 rounded-xl bg-primary text-white text-sm font-bold"
                     >
-                        <span>Créer et passer aux chapitres</span>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                            <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/>
-                        </svg>
-                    </a>
+                        Continuer vers les chapitres
+                    </button>
+
                 </div>
 
             </form>
 
         </div>
+
     </div>
 </x-layouts.admin.admin-layout>
