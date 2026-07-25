@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use App\Models\Specialty;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
