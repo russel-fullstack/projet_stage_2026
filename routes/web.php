@@ -75,7 +75,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses/chapiters', ChapiterController::class)->except(['create', 'store']);
 
     Route::get('list-courses/{course}/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
-    Route::resource('list-courses/lessons', LessonController::class)->except('create');
+    Route::post('list-courses/{course}/lessons', [LessonController::class, 'store'])->name('list-courses.lessons.store');
+    Route::resource('list-courses/lessons', LessonController::class)->except(['create', 'store']);
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::resource('programs', ProgramController::class);
     Route::resource('specialties', SpecialtyController::class);

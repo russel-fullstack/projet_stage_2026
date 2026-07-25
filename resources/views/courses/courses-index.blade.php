@@ -53,9 +53,8 @@
 
                 <!-- Widget Suggestion -->
             </main>
+            {{ $courses->links() }}
     </div>
-
-    <!-- Widget Progression Flottant (Affiché uniquement sur Mobile en bas à gauche de l'écran) -->
     </div>
 
 </x-layouts.app-layout>

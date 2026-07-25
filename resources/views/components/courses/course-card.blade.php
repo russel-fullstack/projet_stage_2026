@@ -5,7 +5,7 @@
     <div class="relative h-48 w-full bg-[#E3E8FC]">
 
         <img
-            src="{{ $course->image_cover }}"
+            src="{{ asset('storage/' . $course->image_cover) }}"
             alt="image"
             class="w-full h-full object-cover"
         />

@@ -12,7 +12,7 @@
             <div
                 class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
                 {{ $current >= 1
-                    ? 'bg-primary text-white'
+                    ? 'bg-secondary text-white'
                     : 'bg-slate-100 text-slate-400'
                 }}"
             >
@@ -41,7 +41,7 @@
         <div
             class="flex-1 h-1 mx-4
             {{ $current >= 2
-                ? 'bg-primary'
+                ? 'bg-secondary'
                 : 'bg-slate-200'
             }}"
         ></div>
@@ -52,7 +52,7 @@
             <div
                 class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
                 {{ $current >= 2
-                    ? 'bg-primary text-white'
+                    ? 'bg-secondary text-white'
                     : 'bg-slate-100 text-slate-400'
                 }}"
             >
@@ -79,9 +79,9 @@
 
         {{-- Ligne --}}
         <div
-            class="flex-1 h-px mx-4
+            class="flex-1 h-1 mx-4
             {{ $current >= 3
-                ? 'bg-primary'
+                ? 'bg-secondary'
                 : 'bg-slate-200'
             }}"
         ></div>
@@ -92,7 +92,7 @@
             <div
                 class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
                 {{ $current >= 3
-                    ? 'bg-primary text-white'
+                    ? 'bg-secondary text-white'
                     : 'bg-slate-100 text-slate-400'
                 }}"
             >

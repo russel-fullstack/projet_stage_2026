@@ -17,7 +17,7 @@ class SpecialtyController extends Controller
 
     public function create()
     {
-        $programs = Program::orderBy('name')->get();
+        $programs = Program::orderBy('name', 'asc')->get();
         return view('admin.specialties.create', compact('programs'));
     }
 
@@ -36,7 +36,7 @@ class SpecialtyController extends Controller
 
     public function edit(Specialty $specialty)
     {
-        $programs = Program::orderBy('name')->get();
+        $programs = Program::orderBy('name', 'asc')->get();
         return view('admin.specialties.edit', compact('specialty', 'programs'));
     }
 }
