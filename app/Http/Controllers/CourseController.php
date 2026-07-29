@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use App\Models\Specialty;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
@@ -32,7 +31,7 @@ class CourseController extends Controller
         $specialties = Specialty::with('program')
             ->orderBy('name')
             ->get();
-        return view('courses.courses-create', compact('specialties'));
+        return view('admin.wizard.create', compact('specialties'));
     }
 
     public function store(StoreCourseRequest $request)
@@ -47,7 +46,7 @@ class CourseController extends Controller
 
         return redirect()
             ->route(
-                'list-courses.chapter',
+                'list-courses.index',
                 $course
             )
             ->with(

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Courses\AdminCourseController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\RapportController;
+use App\Http\Controllers\Admin\CourseWizardController;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Users\UserDashController;
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('register', [RegisterController::class, 'index'])->name('register');
 Route::get('login', [LoginController::class, 'index'])->name('login');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('user')->group(function () {
@@ -70,11 +72,12 @@ Route::resource('courses', CourseController::class);
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses', AdminCourseController::class)->except(['show']);
-    Route::get('list-courses/{course}/chapiter-create', [ChapiterController::class, 'create'])->name('list-courses.chapter');
-    Route::post('list-courses/{course}/', [ChapiterController::class, 'store'])->name('chapiters.store');
+
     Route::resource('list-courses/chapiters', ChapiterController::class)->except(['create', 'store']);
 
-    Route::get('list-courses/{course}/lesson-create', [LessonController::class, 'create'])->name('list-courses.lesson-create');
+        Route::get('list-courses/create', [CourseWizardController::class, 'create'])->name('list-courses.create');
+    Route::post('list-courses', [CourseWizardController::class, 'store'])->name('list-courses.store');
+
     Route::post('list-courses/{course}/lessons', [LessonController::class, 'store'])->name('list-courses.lessons.store');
     Route::resource('list-courses/lessons', LessonController::class)->except(['create', 'store']);
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
