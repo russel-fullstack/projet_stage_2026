@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('specialty_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('specialty_id')->constrained('specialties')->cascadeOnDelete();
             $table->string('title', 50);
             $table->text('description')->nullable();
-            $table->string('image_cover', 255);
-            $table->boolean('is_finish');
+            $table->string('image_cover', 255)->nullable();
+            $table->boolean('is_finish')->default(false);
             $table->timestamps();
         });
     }

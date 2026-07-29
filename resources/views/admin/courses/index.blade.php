@@ -73,7 +73,7 @@
                     <button class="px-4 py-2 hover:bg-slate-50 text-slate-600 rounded-xl transition-colors">En attente</button>
                 </div>
 
-                <a class="flex items-center justify-center space-x-2 px-5 py-2.5 bg-primary hover:bg-[#001848] text-white text-xs font-bold rounded-xl shadow-md shadow-primary/20 transition-all active:scale-95 shrink-0" href="{{ route('courses.create') }}">
+                <a class="flex items-center justify-center space-x-2 px-5 py-2.5 bg-primary hover:bg-[#001848] text-white text-xs font-bold rounded-xl shadow-md shadow-primary/20 transition-all active:scale-95 shrink-0" href="{{ route('list-courses.create') }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
@@ -102,9 +102,9 @@
                                 <div class="flex items-center space-x-3">
                                     <!-- Dynamic Cover Image / Fallback -->
                                     <div class="w-14 h-11 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 relative shadow-sm">
-                                        @if ($course->cover_image)
+                                        @if ($course->image_url)
                                             <img
-                                                src="{{ asset('storage/' . $course->cover_image) }}"
+                                                src="{{  $course->image_url }}"
                                                 alt=""
                                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                             >
