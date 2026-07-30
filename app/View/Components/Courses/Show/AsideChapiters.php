@@ -15,7 +15,9 @@ class AsideChapiters extends Component
         public int $percentComplete = 75,
         public int $completedLessons = 18,
         public int $totalLessons = 24,
-        public array $chapters = []
+        public  $chapters = null,
+        public array $lessonVideos = [],
+        public string $activeLesson = ''
     ) {}
 
     /**

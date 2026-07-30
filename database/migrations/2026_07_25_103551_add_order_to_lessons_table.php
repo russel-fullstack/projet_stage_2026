@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('lessons', function (Blueprint $table) {
                $table->unsignedInteger('order')
-                ->default(0)
+                ->default(1)
                 ->after('title');
         });
     }

@@ -20,73 +20,11 @@
                 'url' => '#',
             ],
         ];
-        $chapters = [
-            [
-                'id' => 1,
-                'title' => 'Chapitre 1 : Fondamentaux',
-                'lessons' => [
-                    [
-                        'title' => '1. Introduction au cours',
-                        'duration' => '05:20',
-                        'status' => 'completed',
-                        'type' => 'video',
-                        'url' => '#',
-                    ],
-                    [
-                        'title' => '2. Configuration de l\'environnement',
-                        'duration' => '12:45',
-                        'status' => 'completed',
-                        'type' => 'video',
-                        'url' => '#',
-                    ],
-                ],
-            ],
-            [
-                'id' => 2,
-                'title' => 'Chapitre 2 : JSX et Rendering',
-                'lessons' => [
-                    [
-                        'title' => '3. Syntaxe JSX avancée',
-                        'duration' => '15:10',
-                        'status' => 'completed',
-                        'type' => 'video',
-                        'url' => '#',
-                    ],
-                ],
-            ],
-            [
-                'id' => 3,
-                'title' => 'Chapitre 3 : Architecture',
-                'lessons' => [
-                    [
-                        'title' => '4. Hooks et Architecture',
-                        'duration' => '18:20',
-                        'status' => 'active',
-                        'type' => 'video',
-                        'url' => '#',
-                    ],
-                    [
-                        'title' => '5. État Global avec Context API',
-                        'duration' => '22:05',
-                        'status' => 'pending',
-                        'type' => 'video',
-                        'url' => '#',
-                    ],
-                    [
-                        'title' => '6. Gestion des formulaires',
-                        'duration' => '14:40',
-                        'status' => 'pending',
-                        'type' => 'video',
-                        'url' => '#',
-                    ]
-                ],
-            ],
-        ];
         $breadcrumbs = [
             [
                 'label' => 'Masterclass React & Next.js',
-                'url' => null // Le dernier élément n'a pas besoin d'URL
-            ]
+                'url' => null, // Le dernier élément n'a pas besoin d'URL
+            ],
         ];
     @endphp
 
@@ -101,8 +39,7 @@
                 <!-- COLONNE GAUCHE : Lecteur, Titres, Onglets (Prend 8 colonnes sur 12) -->
                 <div class="lg:col-span-8 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <VideoPlayer /> -->
-                    <x-courses.show.video-player
-                        src="{{ asset('storage/figma.mp4') }}"/>
+                    <x-courses.show.video-player :poster="$course->image_url" :src="$videoUrl" />
                     <!-- TODO: Composant <LessonHeader /> -->
                     <x-courses.show.lesson-header />
 
@@ -115,27 +52,165 @@
                 <div class="lg:col-span-4 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <CourseProgressBar /> & <SidebarChapterList /> -->
 
-                    <x-courses.show.aside-chapiters
-                        :percent-complete="80"
-                        :completed-lessons="20"
-                        :total-lessons="25"
-                        :chapters="$chapters" />
+                    <x-courses.show.aside-chapiters :percent-complete="0" :completed-lessons="0" :total-lessons="$course->chapiters->sum(fn($chapter) => $chapter->lessons->count())"
+                        :chapters="$course->chapiters" :lessonvideos="$lessonVideos" />
 
 
 
                     <!-- Section Widgets (Instructeur et Discord en grille 1x2 ou côte à côte) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                         <!-- TODO: Composant <InstructorCard /> -->
-                    <x-courses.show.instructor-card
-                        name="Paul synclair"
-                        role="Admin"/>
+                        <x-courses.show.instructor-card :name="auth()->user()->name" role="Admin" />
 
                         <!-- TODO: Composant <SupportWidget /> -->
-                  <x-courses.show.widget />
+                        <x-courses.show.widget />
                     </div>
                 </div>
 
             </div>
         </main>
     </div>
+
+@push('scripts')
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const videoElement = document.getElementById('course-video');
+
+    if (!videoElement) {
+        console.error('Lecteur vidéo introuvable.');
+        return;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Initialisation Plyr
+    |--------------------------------------------------------------------------
+    */
+
+    const player = new Plyr(videoElement);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toutes les leçons
+    |--------------------------------------------------------------------------
+    */
+
+    const lessonButtons = document.querySelectorAll('.lesson-item');
+
+    console.log('Leçons trouvées :', lessonButtons.length);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Clic sur une leçon
+    |--------------------------------------------------------------------------
+    */
+
+    lessonButtons.forEach(button => {
+
+        button.addEventListener('click', function () {
+
+            const videoUrl = this.dataset.videoUrl;
+            const lessonTitle = this.dataset.videoTitle;
+
+            console.log('Leçon sélectionnée :', lessonTitle);
+            console.log('Vidéo :', videoUrl);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Vérifier que la vidéo existe
+            |--------------------------------------------------------------------------
+            */
+
+            if (!videoUrl) {
+
+                console.warn(
+                    'Aucune vidéo disponible pour :',
+                    lessonTitle
+                );
+
+                return;
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Changer la source Plyr
+            |--------------------------------------------------------------------------
+            */
+
+            player.source = {
+
+                type: 'video',
+
+                title: lessonTitle,
+
+                sources: [
+                    {
+                        src: videoUrl,
+                        type: videoUrl.endsWith('.webm')
+                            ? 'video/webm'
+                            : 'video/mp4'
+                    }
+                ]
+
+            };
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Lancer la vidéo
+            |--------------------------------------------------------------------------
+            */
+
+            player.play();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Mettre à jour la leçon active
+            |--------------------------------------------------------------------------
+            */
+
+            lessonButtons.forEach(item => {
+
+                item.classList.remove(
+                    'bg-backcheck',
+                    'text-primary',
+                    'font-semibold'
+                );
+
+                item.classList.add(
+                    'text-slate-700'
+                );
+
+            });
+
+
+            this.classList.remove('text-slate-700');
+
+            this.classList.add(
+                'bg-backcheck',
+                'text-primary',
+                'font-semibold'
+            );
+               player.play().catch(error => {
+                console.log(
+                    'Lecture automatique bloquée par le navigateur.',
+                    error
+                );
+            });
+
+        });
+
+    });
+
+});
+</script>
+
+@endpush
 </x-layouts.app-layout>

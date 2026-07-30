@@ -196,167 +196,163 @@ class CourseWizardController extends Controller
             |--------------------------------------------------------------------------
             */
 
-            foreach ($chaptersData as $chapterIndex => $chapterData) {
+             foreach ($chaptersData as $chapterIndex => $chapterData) {
+
+            /*
+             * Vérifier le titre du chapitre.
+             */
+            if (
+                !isset($chapterData['title']) ||
+                trim($chapterData['title']) === ''
+            ) {
+                throw new \Exception(
+                    'Le titre dun chapitre est obligatoire.'
+                );
+            }
+
+            /*
+             * Créer le chapitre.
+             */
+            $chapiter = Chapiter::create([
+                'course_id' => $course->id,
+                'title' => $chapterData['title'],
+                'description' => $chapterData['description'] ?? null,
+                'order' => $chapterIndex + 1,
+            ]);
+
+            /*
+            |--------------------------------------------------------------------------
+            | 9. Vérifier les leçons
+            |--------------------------------------------------------------------------
+            */
+
+            if (
+                !isset($chapterData['lessons']) ||
+                !is_array($chapterData['lessons']) ||
+                empty($chapterData['lessons'])
+            ) {
+                throw new \Exception(
+                    "Le chapitre « {$chapterData['title']} » doit contenir au moins une leçon."
+                );
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | 10. Création des leçons (CORRIGÉ)
+            |--------------------------------------------------------------------------
+            */
+
+            // Compteur indépendant pour chaque chapitre
+            $lessonOrder = 1;
+
+            foreach ($chapterData['lessons'] as $lessonData) {
 
                 /*
-                 * Vérifier le titre du chapitre.
-                 */
+                |--------------------------------------------------------------------------
+                | Vérifier le titre de la leçon
+                |--------------------------------------------------------------------------
+                */
+
                 if (
-                    !isset($chapterData['title']) ||
-                    trim($chapterData['title']) === ''
+                    !isset($lessonData['title']) ||
+                    trim($lessonData['title']) === ''
                 ) {
                     throw new \Exception(
-                        'Le titre d’un chapitre est obligatoire.'
+                        "Le titre d'une leçon du chapitre « {$chapterData['title']} » est obligatoire."
                     );
                 }
 
                 /*
-                 * Créer le chapitre.
+                |--------------------------------------------------------------------------
+                | Vérifier video_index
+                |--------------------------------------------------------------------------
+                */
+
+                if (
+                    !isset($lessonData['video_index']) ||
+                    $lessonData['video_index'] === null ||
+                    $lessonData['video_index'] === ''
+                ) {
+                    throw new \Exception(
+                        "La vidéo de la leçon « {$lessonData['title']} » est obligatoire."
+                    );
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Récupérer l'index de la vidéo
+                |--------------------------------------------------------------------------
+                */
+
+                $videoIndex = (int) $lessonData['video_index'];
+
+                /*
+                |--------------------------------------------------------------------------
+                | Vérifier que le fichier existe
+                |--------------------------------------------------------------------------
+                */
+
+                if (!isset($lessonVideos[$videoIndex])) {
+                    throw new \Exception(
+                        "La vidéo de la leçon « {$lessonData['title']} » est introuvable."
+                    );
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Récupérer le fichier vidéo
+                |--------------------------------------------------------------------------
+                */
+
+                $videoFile = $lessonVideos[$videoIndex];
+
+                /*
+                |--------------------------------------------------------------------------
+                | Vérification supplémentaire
+                |--------------------------------------------------------------------------
+                */
+
+                if (!$videoFile->isValid()) {
+                    throw new \Exception(
+                        "La vidéo de la leçon « {$lessonData['title']} » est invalide."
+                    );
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | Upload de la vidéo vers MinIO
+                |--------------------------------------------------------------------------
+                */
+
+                $videoPath = $this->minio->upload(
+                    $videoFile,
+                    'lessons/videos'
+                );
+
+                /*
+                 * On mémorise le chemin pour pouvoir
+                 * supprimer le fichier en cas d'erreur.
                  */
-                $chapiter = Chapiter::create([
-                    'course_id' => $course->id,
+                $uploadedFiles[] = $videoPath;
 
-                    'title' => $chapterData['title'],
+                /*
+                |--------------------------------------------------------------------------
+                | Création de la leçon (AVEC ORDER CORRIGÉ)
+                |--------------------------------------------------------------------------
+                */
 
-                    'description' => $chapterData['description'] ?? null,
-
-                    'order' => $chapterIndex + 1,
+                Lesson::create([
+                    'chapiter_id' => $chapiter->id,
+                    'title' => $lessonData['title'],
+                    'content' => $lessonData['content'] ?? null,
+                    'video_url' => $videoPath,
+                    'order' => $lessonOrder,  // ✅ Ordre correct
                 ]);
 
-                /*
-                |--------------------------------------------------------------------------
-                | 9. Vérifier les leçons
-                |--------------------------------------------------------------------------
-                */
-
-                if (
-                    !isset($chapterData['lessons']) ||
-                    !is_array($chapterData['lessons']) ||
-                    empty($chapterData['lessons'])
-                ) {
-                    throw new \Exception(
-                        "Le chapitre « {$chapterData['title']} » doit contenir au moins une leçon."
-                    );
-                }
-
-                /*
-                |--------------------------------------------------------------------------
-                | 10. Création des leçons
-                |--------------------------------------------------------------------------
-                */
-
-                foreach (
-                    $chapterData['lessons']
-                    as $lessonIndex => $lessonData
-                ) {
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Vérifier le titre de la leçon
-                    |--------------------------------------------------------------------------
-                    */
-
-                    if (
-                        !isset($lessonData['title']) ||
-                        trim($lessonData['title']) === ''
-                    ) {
-                        throw new \Exception(
-                            "Le titre d'une leçon du chapitre « {$chapterData['title']} » est obligatoire."
-                        );
-                    }
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Vérifier video_index
-                    |--------------------------------------------------------------------------
-                    */
-
-                    if (
-                        !isset($lessonData['video_index']) ||
-                        $lessonData['video_index'] === null ||
-                        $lessonData['video_index'] === ''
-                    ) {
-                        throw new \Exception(
-                            "La vidéo de la leçon « {$lessonData['title']} » est obligatoire."
-                        );
-                    }
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Récupérer l'index de la vidéo
-                    |--------------------------------------------------------------------------
-                    */
-
-                    $videoIndex = (int) $lessonData['video_index'];
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Vérifier que le fichier existe
-                    |--------------------------------------------------------------------------
-                    */
-
-                    if (!isset($lessonVideos[$videoIndex])) {
-                        throw new \Exception(
-                            "La vidéo de la leçon « {$lessonData['title']} » est introuvable."
-                        );
-                    }
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Récupérer le fichier vidéo
-                    |--------------------------------------------------------------------------
-                    */
-
-                    $videoFile = $lessonVideos[$videoIndex];
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Vérification supplémentaire
-                    |--------------------------------------------------------------------------
-                    */
-
-                    if (!$videoFile->isValid()) {
-                        throw new \Exception(
-                            "La vidéo de la leçon « {$lessonData['title']} » est invalide."
-                        );
-                    }
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Upload de la vidéo vers MinIO
-                    |--------------------------------------------------------------------------
-                    */
-
-                    $videoPath = $this->minio->upload(
-                        $videoFile,
-                        'lessons/videos'
-                    );
-
-                    /*
-                     * On mémorise le chemin pour pouvoir
-                     * supprimer le fichier en cas d'erreur.
-                     */
-                    $uploadedFiles[] = $videoPath;
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Création de la leçon
-                    |--------------------------------------------------------------------------
-                    */
-
-                    Lesson::create([
-                        'chapiter_id' => $chapiter->id,
-
-                        'title' => $lessonData['title'],
-
-                        'content' => $lessonData['content'] ?? null,
-
-                        'video_url' => $videoPath,
-
-                        'order' => $lessonIndex + 1,
-                    ]);
-                }
+                // ✅ Incrémenter après chaque création
+                $lessonOrder++;
             }
+        }
 
             /*
             |--------------------------------------------------------------------------

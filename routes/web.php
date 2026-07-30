@@ -68,7 +68,8 @@ Route::get('/user/passkeys', function () {
 });
 
 
-Route::resource('courses', CourseController::class);
+Route::resource('courses', CourseController::class)->except(['show']);
+Route::get('courses/{course}/{lesson?}', [CourseController::class, 'show'])->name('courses.show');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('list-courses', AdminCourseController::class)->except(['show']);

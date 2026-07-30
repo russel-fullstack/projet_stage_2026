@@ -12,8 +12,8 @@ class VideoPlayer extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $poster='https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1600&auto=format&fit=crop',
-        public string $src='https://cdn.coverr.co/videos/coverr-developer-coding-in-vs-code-4601/1080p.mp4'
+        public string $poster='',
+        public string $src=''
     )
     {}
 
