@@ -23,9 +23,12 @@ class InstructorCard extends Component
         // Vérifier si l'utilisateur connecté est un étudiant
         if ($currentUser && $currentUser->role === 'user') {
             $this->isStudent = true;
-            
+
             // Récupérer le premier administrateur enregistré
             $this->admin = User::where('role', 'admin')->first();
+        }else{
+                        $this->admin = User::where('role', 'admin')->first();
+
         }
     }
 

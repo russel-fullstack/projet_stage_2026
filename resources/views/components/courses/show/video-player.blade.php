@@ -1,8 +1,8 @@
 
-<div  class=" rounded-2xl shadow-xl overflow-hidden ">
+<div  class=" rounded-2xl shadow-xl overflow-hidden bg-black " style="aspect-ratio: 16 / 9;">
     <video
         id='course-video'
-        class="plyr-video w-full rounded-xl"
+        class="plyr--video w-full rounded-xl"
         playsinline
         controls
         preload="metadata"

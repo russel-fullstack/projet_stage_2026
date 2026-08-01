@@ -1,34 +1,43 @@
 @props([
-    'title' => config('app.name', 'Lumina'),
+    'title' => 'Authentification',
 ])
 
-    <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $title }}</title>
+    <title>{{ $title }} — EduMaster</title>
 
-    <!-- Scripts & Styles via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased text-slate-900 bg-[#F8FAFC]">
 
-<div class="h-screen w-full bg-[#F8FAFC] overflow-hidden font-sans">
+<body class="antialiased">
 
-    <!-- Conteneur Split Screen 50/50 Pleine Page -->
-    <div class="w-full h-full grid grid-cols-1 lg:grid-cols-2">
-        <!-- COLONNE DROITE (Formulaire, SSO & Footer) -->
-        <div class="bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-center h-full overflow-y-auto">
-            <div class="max-w-md w-full mx-auto">
-                {{ $slot }}
-            </div>
+    <div class="min-h-screen w-full bg-white overflow-hidden font-sans">
+
+        <div class="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
+
+            {{-- COLONNE BRANDING --}}
+            <x-login.brainding-card />
+
+            {{-- COLONNE FORMULAIRE --}}
+            <main
+                class="bg-white px-6 py-10 sm:px-12 lg:px-16 flex flex-col justify-center min-h-screen overflow-y-auto"
+            >
+                <div class="max-w-md w-full mx-auto">
+
+                    {{ $slot }}
+
+                </div>
+            </main>
+
         </div>
 
     </div>
-</div>
 
 </body>
+
 </html>

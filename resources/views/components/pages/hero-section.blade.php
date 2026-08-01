@@ -54,8 +54,8 @@
 
          <div class="flex justify-center lg:justify-end">
              <div
-                 class="w-150 h-125 bg-[#E3E8FC]  shadow-xl shadow-gray-200/50 flex items-center justify-center transition-transform hover:scale-[1.01] duration-300">
-                 <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
+                 class="w-200 h-125 bg-[#E3E8FC]  shadow-xl shadow-gray-200/50 flex items-center justify-center transition-transform hover:scale-[1.01] duration-300">
+                 <img src="{{ app(\App\Services\MinioService::class)->url('test.avif') }}"
                      alt="Jeune femme apprenant en ligne sur son ordinateur" class="w-full h-full object-cover rounded-3xl" />
              </div>
          </div>

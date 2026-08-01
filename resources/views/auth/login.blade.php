@@ -1,24 +1,18 @@
-<x-layouts.app-layout>
-    <div class="h-screen w-full bg-[#F8FAFC] overflow-hidden font-sans">
+<x-guest-layout>
+ <div class=" mb-4 flex flex-col items-center justify-center space-x-3">
+       <div class="flex items-center space-x-2">
+         <img src="{{ asset('logo.png') }}" alt="Logo" height="40" width="40">
+        <span class="text-lg font-bold text-center tracking-tight text-secondary">Edu<span
+                class="text-primary">Master</span></span>
+       </div>
 
-    <!-- Conteneur Split Screen 50/50 Pleine Page -->
-    <div class="w-full h-full grid grid-cols-1 lg:grid-cols-2">
-
-        <x-login.brainding-card/>
-
-        <div class="bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-center h-full overflow-y-auto">
-            <div class="max-w-md w-full mx-auto">
-
-             <x-login.form-register/>
-
-               <x-login.sso/>
-
-               <x-login.footer/>
-
-            </div>
-        </div>
-
+        <h2 class="text-xl font-extrabold text-secondary pt-5 tracking-hightest">Connectez-vous :</h2>
     </div>
-</div>
+    <x-login.sso/>
 
-</x-layouts.app-layout>
+    <x-login.form-register/>
+
+
+    <x-login.footer/>
+
+</x-guest-layout>

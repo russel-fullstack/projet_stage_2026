@@ -41,26 +41,35 @@
                     <!-- TODO: Composant <VideoPlayer /> -->
                     <x-courses.show.video-player :poster="$course->image_url" :src="$videoUrl" />
                     <!-- TODO: Composant <LessonHeader /> -->
-                    <x-courses.show.lesson-header />
-
+                    <x-courses.show.lesson-header
+                        :active-chapter="$activeChapter"
+                        :active-lesson="$activeLesson"
+                        :all-lessons="$allLessons"
+                        :previous-lesson="$previousLesson"
+                        :next-lesson="$nextLesson"
+                    />
 
                     <!-- TODO: Composant <CourseTabs /> -->
-                    <x-courses.show.course-tabs :description="$description" :objectives="$objectives" :resources="$resources" />
+                    <x-courses.show.course-tabs
+                     :description="$description"
+                     :objectives="$objectives"
+                     :resources="$resources" />
                 </div>
 
                 <!-- COLONNE DROITE : Progression, Chapitres et Widgets (Prend 4 colonnes sur 12) -->
                 <div class="lg:col-span-4 flex flex-col space-y-6 ">
                     <!-- TODO: Composant <CourseProgressBar /> & <SidebarChapterList /> -->
 
-                    <x-courses.show.aside-chapiters :percent-complete="0" :completed-lessons="0" :total-lessons="$course->chapiters->sum(fn($chapter) => $chapter->lessons->count())"
-                        :chapters="$course->chapiters" :lessonvideos="$lessonVideos" />
+                    <x-courses.show.aside-chapiters
+                    :percent-complete="0" :completed-lessons="0" :total-lessons="$course->chapiters->sum(fn($chapter) => $chapter->lessons->count())"
+                        :chapters="$course->chapiters" />
 
 
 
                     <!-- Section Widgets (Instructeur et Discord en grille 1x2 ou côte à côte) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                         <!-- TODO: Composant <InstructorCard /> -->
-                        <x-courses.show.instructor-card :name="auth()->user()->name" role="Admin" />
+                        <x-courses.show.instructor-card  role="Admin" />
 
                         <!-- TODO: Composant <SupportWidget /> -->
                         <x-courses.show.widget />
@@ -136,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-
             /*
             |--------------------------------------------------------------------------
             | Changer la source Plyr
@@ -187,7 +195,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.classList.add(
                     'text-slate-700'
                 );
-
+                 const statusSpan = item.querySelector('.lesson-status');
+                if (statusSpan && item.dataset.videoUrl) {
+                    statusSpan.textContent = 'Vidéo disponible';
+                }
             });
 
 
@@ -198,6 +209,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 'text-primary',
                 'font-semibold'
             );
+
+            const activeStatus = this.querySelector('.lesson-status');
+            if (activeStatus) {
+                activeStatus.textContent = 'En lecture';
+            }
+
                player.play().catch(error => {
                 console.log(
                     'Lecture automatique bloquée par le navigateur.',

@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Specialty;
-use App\Models\User;
 use App\Services\MinioService;
 
 class CourseController extends Controller
@@ -26,46 +25,86 @@ class CourseController extends Controller
 
         return view('courses.courses-index', compact('courses', 'specialties'));
     }
+public function show(Course $course, ?Lesson $lesson = null)
+{
+    $course->load([
+        'chapiters' => function ($query) {
+            $query->orderBy('order');
+        },
+        'chapiters.lessons' => function ($query) {
+            $query->orderBy('order');
+        },
+    ]);
 
-    public function show(Course $course, ?Lesson $lesson = null)
-    {
-        $admin = User::where('role', '', 'admin', false)->first();
-        $course->load([
-            'chapiters' => function ($query) {
-                $query->orderBy('order');
-            },
-            'chapiters.lessons' => function ($query) {
-                $query->orderBy('order');
-            },
-        ]);
-
-        $activeLesson = $lesson;
-
-        $lessons = $course->chapiters->flatMap->lessons->filter(fn ($lesson) => ! empty($lesson->video_url));
-        $firstLesson = $lessons->first();
-
-        $videoUrl = $firstLesson ? $this->minio->url($firstLesson->video_url) : null;
-
-        $lessonVideos = $lessons->mapWithKeys(function ($lesson) { return [ $lesson->id => [ 'title' => $lesson->title, 'url' => $this->minio->url($lesson->video_url), ], ]; });
-
-
-            if (!$activeLesson) {
-                $activeLesson = $course->chapiters
-                ->flatMap->lessons
-                ->first();
-            }
-
-            if (
-                $lesson &&!$course->chapiters->contains(
-                fn ($chapter) => $chapter->lessons->contains('id', $lesson->id)
-                )
-                ) {
-                abort(404);
-            }
-
-        return view('courses.courses-show', compact('course', 'videoUrl', 'firstLesson', 'lessonVideos', 'lesson', 'activeLesson', 'admin'));
+    // Première leçon si aucune leçon n'est sélectionnée
+    if (!$lesson) {
+        $lesson = $course->chapiters
+            ->flatMap->lessons
+            ->first();
     }
 
+    // Vérifier que la leçon appartient bien au cours
+    if (
+        $lesson &&
+        !$course->chapiters->contains(
+            fn ($chapter) =>
+                $chapter->lessons->contains('id', $lesson->id)
+        )
+    ) {
+        abort(404);
+    }
+
+    // Chapitre de la leçon active
+    $activeChapter = $lesson
+        ? $course->chapiters->first(
+            fn ($chapter) =>
+                $chapter->lessons->contains('id', $lesson->id)
+        )
+        : null;
+
+    // URL vidéo MinIO
+    $videoUrl = null;
+
+    if ($lesson && $lesson->video_url) {
+        $videoUrl = $this->minio->url($lesson->video_url);
+    }
+
+    // Toutes les leçons du cours
+    $allLessons = $course->chapiters
+        ->flatMap->lessons
+        ->values();
+
+    // Position de la leçon actuelle
+    $currentIndex = $lesson
+        ? $allLessons->search(
+            fn ($item) => $item->id === $lesson->id
+        )
+        : null;
+
+    $previousLesson = null;
+    $nextLesson = null;
+
+    if ($currentIndex !== false && $currentIndex !== null) {
+
+        $previousLesson = $allLessons->get($currentIndex - 1);
+
+        $nextLesson = $allLessons->get($currentIndex + 1);
+    }
+
+    return view('courses.courses-show', [
+        'course' => $course,
+        'chapters' => $course->chapiters,
+
+        'activeLesson' => $lesson,
+        'activeChapter' => $activeChapter,
+
+        'videoUrl' => $videoUrl,
+
+        'allLessons' => $allLessons,
+        'previousLesson' => $previousLesson,
+        'nextLesson' => $nextLesson,
+    ]);
+}
     public function create()
     {
         $specialties = Specialty::with('program')

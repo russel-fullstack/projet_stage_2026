@@ -464,6 +464,70 @@
                         </p>
                     </div>
 
+                    <!-- RESSOURCES -->
+                    <div class="mb-6">
+
+                        <label class="block mb-2 text-xs font-bold text-slate-700">
+                            Ressources de la leçon
+                        </label>
+
+                        <input type="file" id="lesson_resources" multiple @change="handleResourceUpload($event)"
+                            accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.rar,.txt"
+                            class="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg
+               file:border-0 file:text-xs file:font-bold
+               file:bg-secondary file:text-white
+               hover:file:bg-secondary/90">
+
+                        <p class="mt-2 text-[11px] text-slate-400">
+                            PDF, Word, PowerPoint, ZIP, RAR, TXT...
+                        </p>
+
+                        <!-- Liste des fichiers sélectionnés -->
+                        <div x-show="newLesson.resources.length > 0" class="mt-4 space-y-2">
+
+                            <template x-for="(resource, resourceIndex) in newLesson.resources" :key="resourceIndex">
+
+                                <div
+                                    class="flex items-center justify-between gap-3
+                       p-3 rounded-xl bg-slate-50
+                       border border-slate-200">
+
+                                    <div class="flex items-center gap-3 min-w-0">
+
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-white
+                               border border-slate-200
+                               flex items-center justify-center shrink-0">
+                                            📎
+                                        </div>
+
+                                        <div class="min-w-0">
+
+                                            <p class="text-xs font-bold text-slate-700 truncate"
+                                                x-text="resource.name"></p>
+
+                                            <p class="text-[10px] text-slate-400"
+                                                x-text="formatFileSize(resource.size)"></p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <button type="button" @click="removeResource(resourceIndex)"
+                                        class="w-7 h-7 rounded-lg
+                           text-slate-400 hover:text-rose-600
+                           hover:bg-rose-50 transition">
+                                        ✕
+                                    </button>
+
+                                </div>
+
+                            </template>
+
+                        </div>
+
+                    </div>
+
                     <button type="button" @click="addLesson()"
                         class="w-full px-5 py-3 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary/90 transition shadow-md active:scale-[0.98]">
                         + Ajouter la leçon
@@ -824,15 +888,15 @@
                             title: '',
                             description: ''
                         };
-                       this.newLesson = {
+                        this.newLesson = {
                             chapiter_id: '',
                             title: '',
                             content: '',
                             video_url: null,
                             video_index: null
-                            };
+                        };
 
-                            this.lessonVideos = [];
+                        this.lessonVideos = [];
                         this.currentStep = 1;
                         this.hasErrors = false;
                         this.imagePreview = null;
@@ -840,35 +904,35 @@
                 },
 
                 async handleSubmit() {
-                                if (!this.isFormComplete()) {
-                    this.hasErrors = true;
-                    this.errorMessage =
-                    'Chaque leçon doit obligatoirement avoir une vidéo.';
-                    return;
+                    if (!this.isFormComplete()) {
+                        this.hasErrors = true;
+                        this.errorMessage =
+                            'Chaque leçon doit obligatoirement avoir une vidéo.';
+                        return;
                     }
 
                     const formData = new FormData();
 
                     formData.append(
-                    'specialty_id',
-                    this.formData.specialty_id
+                        'specialty_id',
+                        this.formData.specialty_id
                     );
 
                     formData.append(
-                    'title',
-                    this.formData.title
+                        'title',
+                        this.formData.title
                     );
 
                     formData.append(
-                    'description',
-                    this.formData.description || ''
+                        'description',
+                        this.formData.description || ''
                     );
 
                     if (this.formData.image_cover) {
-                    formData.append(
-                    'image_cover',
-                    this.formData.image_cover
-                    );
+                        formData.append(
+                            'image_cover',
+                            this.formData.image_cover
+                        );
                     }
 
                     /*
@@ -878,8 +942,8 @@
                     */
 
                     formData.append(
-                    'chapters',
-                    JSON.stringify(this.chapters)
+                        'chapters',
+                        JSON.stringify(this.chapters)
                     );
 
                     /*
@@ -890,59 +954,57 @@
 
                     this.lessonVideos.forEach((video, index) => {
 
-                    formData.append(
-                    `lesson_videos[${index}]`,
-                    video
-                    );
+                        formData.append(
+                            `lesson_videos[${index}]`,
+                            video
+                        );
 
                     });
 
                     try {
 
-                    const response = await fetch(
-                    '{{ route("list-courses.store") }}',
-                    {
-                        method: 'POST',
+                        const response = await fetch(
+                            '{{ route('list-courses.store') }}', {
+                                method: 'POST',
 
-                        headers: {
-                            'X-CSRF-TOKEN':
-                                document.querySelector(
-                                    'meta[name="csrf-token"]'
-                                ).content,
-                        },
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector(
+                                        'meta[name="csrf-token"]'
+                                    ).content,
+                                },
 
-                        body: formData
-                    }
-                    );
+                                body: formData
+                            }
+                        );
 
-                    const data = await response.json();
+                        const data = await response.json();
 
-                    if (response.ok) {
+                        if (response.ok) {
 
-                    alert('✅ Cours créé avec succès !');
+                            alert('✅ Cours créé avec succès !');
 
-                    window.location.href =
-                        '{{ route("courses.index") }}';
+                            window.location.href =
+                                '{{ route('courses.index') }}';
 
-                    } else {
+                        } else {
 
-                    this.hasErrors = true;
+                            this.hasErrors = true;
 
-                    this.errorMessage =
-                        data.message ||
-                        'Erreur lors de la création du cours.';
-                    }
+                            this.errorMessage =
+                                data.message ||
+                                'Erreur lors de la création du cours.';
+                        }
 
                     } catch (error) {
 
-                    this.hasErrors = true;
+                        this.hasErrors = true;
 
-                    this.errorMessage =
-                    'Erreur serveur : ' + error.message;
+                        this.errorMessage =
+                            'Erreur serveur : ' + error.message;
 
+                    }
                 }
-             }
-        }
+            }
         }
     </script>
 

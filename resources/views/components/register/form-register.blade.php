@@ -1,8 +1,3 @@
-<!-- En-tête -->
-<div class="space-y-1 mb-8">
-    <h2 class="text-3xl font-black text-[#110B29] tracking-tight">Créez votre compte</h2>
-    <p class="text-xs font-medium text-slate-500">Commencez votre parcours d'apprentissage en moins de 60 secondes.</p>
-</div>
 
 <!-- Formulaire HTML Autonome -->
 <form action="{{ route('register') }}" method="POST" class="space-y-4">
@@ -146,7 +141,7 @@
     <div class="pt-2">
         <button
             type="submit"
-            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-[#110B29] hover:bg-[#1b123d] text-white font-extrabold text-xs rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#110B29]/20 focus:ring-offset-2 active:scale-[0.98] cursor-pointer"
+            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-primary hover:bg-[#23019e] text-white font-extrabold text-xs rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#110B29]/20 focus:ring-offset-2 active:scale-[0.98] cursor-pointer"
         >
             Créer mon compte
         </button>
