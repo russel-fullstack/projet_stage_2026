@@ -18,6 +18,17 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\Users\SuggestionController;
 use App\Http\Controllers\Users\UserDashController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\GithubController;
+
+Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('auth.google.redirect');
+
+Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
+
+Route::get('/auth/github/redirect', [GithubController::class, 'redirect'])->name('auth.github.redirect');
+
+Route::get('/auth/github/callback', [GithubController::class, 'callback'])->name('auth.github.callback');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('register', [RegisterController::class, 'index'])->name('register');

@@ -1,4 +1,5 @@
 <x-layouts.app-layout>
+   
     <main class="bg-hero min-h-screen font-inter">
         <!-- Hero Section -->
         <x-pages.hero-section />

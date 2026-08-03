@@ -26,7 +26,7 @@
 
      <!-- Footer -->
    <x-pages.footer/>
-   
+
 @stack('scripts')
 </body>
 
